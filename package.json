@@ -1,0 +1,18 @@
+{
+  "name": "provisioning_api",
+  "version": "9.0.000.00.423",
+  "description": "The_provisioning_service_will_be_used_to_create_objects_in_configuration_server_in_a_way_that_is_consistent_with_the_BEC_model_The_users_resource_will_be_used_to_perform_CRUD_operations_on_config_server_person_objects__Note_that_this_API_will_extend_the_low_level_configuration_server_API_to_add_additional_functionality_that_will_allow_persons_to_be_created_in_a_way_that_makes_them_immediately_useable_in_BEC__Operations_on_this_resource_may_result_in_other_configuration_objects_being_modified_as_well_",
+  "license": "Unlicense",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive"
+  },
+  "dependencies": {
+    "superagent": "1.7.1"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  }
+}
