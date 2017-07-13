@@ -23,7 +23,7 @@
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.Extension = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.LoginData = factory(root.ProvisioningApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -32,72 +32,58 @@
 
 
   /**
-   * The Extension model module.
-   * @module model/Extension
+   * The LoginData model module.
+   * @module model/LoginData
    * @version 9.0.000.00.722
    */
 
   /**
-   * Constructs a new <code>Extension</code>.
-   * @alias module:model/Extension
+   * Constructs a new <code>LoginData</code>.
+   * @alias module:model/LoginData
    * @class
+   * @param domainUsername {String} User unique login in form: domain.com\\login  Effect: Controls the value of the corresponding CfgPerson attribute 
+   * @param password {String} Password as plain text.  Effect: Controls the value of the corresponding CfgPerson attribute 
    */
-  var exports = function() {
+  var exports = function(domainUsername, password) {
     var _this = this;
 
-
-
-
-
+    _this['domain_username'] = domainUsername;
+    _this['password'] = password;
   };
 
   /**
-   * Constructs a <code>Extension</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>LoginData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Extension} obj Optional instance to populate.
-   * @return {module:model/Extension} The populated <code>Extension</code> instance.
+   * @param {module:model/LoginData} obj Optional instance to populate.
+   * @return {module:model/LoginData} The populated <code>LoginData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('number')) {
-        obj['number'] = ApiClient.convertToType(data['number'], 'String');
+      if (data.hasOwnProperty('domain_username')) {
+        obj['domain_username'] = ApiClient.convertToType(data['domain_username'], 'String');
       }
-      if (data.hasOwnProperty('description')) {
-        obj['description'] = ApiClient.convertToType(data['description'], 'String');
-      }
-      if (data.hasOwnProperty('isDefault')) {
-        obj['isDefault'] = ApiClient.convertToType(data['isDefault'], 'Boolean');
-      }
-      if (data.hasOwnProperty('placeName')) {
-        obj['placeName'] = ApiClient.convertToType(data['placeName'], 'String');
+      if (data.hasOwnProperty('password')) {
+        obj['password'] = ApiClient.convertToType(data['password'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * Phone number
-   * @member {String} number
+   * User unique login in form: domain.com\\login  Effect: Controls the value of the corresponding CfgPerson attribute 
+   * @member {String} domain_username
+   * @default 'domain.com\login'
    */
-  exports.prototype['number'] = undefined;
+  exports.prototype['domain_username'] = 'domain.com\login';
   /**
-   * Description (Mobile, Office)
-   * @member {String} description
+   * Password as plain text.  Effect: Controls the value of the corresponding CfgPerson attribute 
+   * @member {String} password
+   * @default 'password'
    */
-  exports.prototype['description'] = undefined;
-  /**
-   * true/false
-   * @member {Boolean} isDefault
-   */
-  exports.prototype['isDefault'] = undefined;
-  /**
-   * Name of the corresponding place name
-   * @member {String} placeName
-   */
-  exports.prototype['placeName'] = undefined;
+  exports.prototype['password'] = 'password';
 
 
 

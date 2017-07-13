@@ -23,7 +23,7 @@
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.Extension = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.GetUsersSuccessResponseStatusDataSkills = factory(root.ProvisioningApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -32,14 +32,14 @@
 
 
   /**
-   * The Extension model module.
-   * @module model/Extension
+   * The GetUsersSuccessResponseStatusDataSkills model module.
+   * @module model/GetUsersSuccessResponseStatusDataSkills
    * @version 9.0.000.00.722
    */
 
   /**
-   * Constructs a new <code>Extension</code>.
-   * @alias module:model/Extension
+   * Constructs a new <code>GetUsersSuccessResponseStatusDataSkills</code>.
+   * @alias module:model/GetUsersSuccessResponseStatusDataSkills
    * @class
    */
   var exports = function() {
@@ -47,57 +47,37 @@
 
 
 
-
-
   };
 
   /**
-   * Constructs a <code>Extension</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>GetUsersSuccessResponseStatusDataSkills</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Extension} obj Optional instance to populate.
-   * @return {module:model/Extension} The populated <code>Extension</code> instance.
+   * @param {module:model/GetUsersSuccessResponseStatusDataSkills} obj Optional instance to populate.
+   * @return {module:model/GetUsersSuccessResponseStatusDataSkills} The populated <code>GetUsersSuccessResponseStatusDataSkills</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('number')) {
-        obj['number'] = ApiClient.convertToType(data['number'], 'String');
+      if (data.hasOwnProperty('DBID')) {
+        obj['DBID'] = ApiClient.convertToType(data['DBID'], 'String');
       }
-      if (data.hasOwnProperty('description')) {
-        obj['description'] = ApiClient.convertToType(data['description'], 'String');
-      }
-      if (data.hasOwnProperty('isDefault')) {
-        obj['isDefault'] = ApiClient.convertToType(data['isDefault'], 'Boolean');
-      }
-      if (data.hasOwnProperty('placeName')) {
-        obj['placeName'] = ApiClient.convertToType(data['placeName'], 'String');
+      if (data.hasOwnProperty('name')) {
+        obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * Phone number
-   * @member {String} number
+   * @member {String} DBID
    */
-  exports.prototype['number'] = undefined;
+  exports.prototype['DBID'] = undefined;
   /**
-   * Description (Mobile, Office)
-   * @member {String} description
+   * @member {String} name
    */
-  exports.prototype['description'] = undefined;
-  /**
-   * true/false
-   * @member {Boolean} isDefault
-   */
-  exports.prototype['isDefault'] = undefined;
-  /**
-   * Name of the corresponding place name
-   * @member {String} placeName
-   */
-  exports.prototype['placeName'] = undefined;
+  exports.prototype['name'] = undefined;
 
 
 

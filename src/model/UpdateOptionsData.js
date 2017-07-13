@@ -23,7 +23,7 @@
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.Extension = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.UpdateOptionsData = factory(root.ProvisioningApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -32,14 +32,14 @@
 
 
   /**
-   * The Extension model module.
-   * @module model/Extension
+   * The UpdateOptionsData model module.
+   * @module model/UpdateOptionsData
    * @version 9.0.000.00.722
    */
 
   /**
-   * Constructs a new <code>Extension</code>.
-   * @alias module:model/Extension
+   * Constructs a new <code>UpdateOptionsData</code>.
+   * @alias module:model/UpdateOptionsData
    * @class
    */
   var exports = function() {
@@ -48,56 +48,47 @@
 
 
 
-
   };
 
   /**
-   * Constructs a <code>Extension</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>UpdateOptionsData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Extension} obj Optional instance to populate.
-   * @return {module:model/Extension} The populated <code>Extension</code> instance.
+   * @param {module:model/UpdateOptionsData} obj Optional instance to populate.
+   * @return {module:model/UpdateOptionsData} The populated <code>UpdateOptionsData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('number')) {
-        obj['number'] = ApiClient.convertToType(data['number'], 'String');
+      if (data.hasOwnProperty('newOptions')) {
+        obj['newOptions'] = ApiClient.convertToType(data['newOptions'], Object);
       }
-      if (data.hasOwnProperty('description')) {
-        obj['description'] = ApiClient.convertToType(data['description'], 'String');
+      if (data.hasOwnProperty('changedOptions')) {
+        obj['changedOptions'] = ApiClient.convertToType(data['changedOptions'], Object);
       }
-      if (data.hasOwnProperty('isDefault')) {
-        obj['isDefault'] = ApiClient.convertToType(data['isDefault'], 'Boolean');
-      }
-      if (data.hasOwnProperty('placeName')) {
-        obj['placeName'] = ApiClient.convertToType(data['placeName'], 'String');
+      if (data.hasOwnProperty('deletedOptions')) {
+        obj['deletedOptions'] = ApiClient.convertToType(data['deletedOptions'], Object);
       }
     }
     return obj;
   }
 
   /**
-   * Phone number
-   * @member {String} number
+   * New CloudCluster app Options.  Effect: Adds sections, keys and values in CloudCluster/Options 
+   * @member {Object} newOptions
    */
-  exports.prototype['number'] = undefined;
+  exports.prototype['newOptions'] = undefined;
   /**
-   * Description (Mobile, Office)
-   * @member {String} description
+   * Changed CloudCluster app Options.  Effect: Updates existing values in CloudCluster/Options 
+   * @member {Object} changedOptions
    */
-  exports.prototype['description'] = undefined;
+  exports.prototype['changedOptions'] = undefined;
   /**
-   * true/false
-   * @member {Boolean} isDefault
+   * Deleted CloudCluster app Options.  Effect: Deletes sections, keys and values in CloudCluster/Options 
+   * @member {Object} deletedOptions
    */
-  exports.prototype['isDefault'] = undefined;
-  /**
-   * Name of the corresponding place name
-   * @member {String} placeName
-   */
-  exports.prototype['placeName'] = undefined;
+  exports.prototype['deletedOptions'] = undefined;
 
 
 

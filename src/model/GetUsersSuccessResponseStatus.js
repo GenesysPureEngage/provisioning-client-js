@@ -14,32 +14,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/GetUsersSuccessResponseStatusData'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./GetUsersSuccessResponseStatusData'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.Extension = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.GetUsersSuccessResponseStatus = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.GetUsersSuccessResponseStatusData);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, GetUsersSuccessResponseStatusData) {
   'use strict';
 
 
 
 
   /**
-   * The Extension model module.
-   * @module model/Extension
+   * The GetUsersSuccessResponseStatus model module.
+   * @module model/GetUsersSuccessResponseStatus
    * @version 9.0.000.00.722
    */
 
   /**
-   * Constructs a new <code>Extension</code>.
-   * @alias module:model/Extension
+   * Constructs a new <code>GetUsersSuccessResponseStatus</code>.
+   * @alias module:model/GetUsersSuccessResponseStatus
    * @class
    */
   var exports = function() {
@@ -47,57 +47,37 @@
 
 
 
-
-
   };
 
   /**
-   * Constructs a <code>Extension</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>GetUsersSuccessResponseStatus</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Extension} obj Optional instance to populate.
-   * @return {module:model/Extension} The populated <code>Extension</code> instance.
+   * @param {module:model/GetUsersSuccessResponseStatus} obj Optional instance to populate.
+   * @return {module:model/GetUsersSuccessResponseStatus} The populated <code>GetUsersSuccessResponseStatus</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('number')) {
-        obj['number'] = ApiClient.convertToType(data['number'], 'String');
+      if (data.hasOwnProperty('code')) {
+        obj['code'] = ApiClient.convertToType(data['code'], 'Number');
       }
-      if (data.hasOwnProperty('description')) {
-        obj['description'] = ApiClient.convertToType(data['description'], 'String');
-      }
-      if (data.hasOwnProperty('isDefault')) {
-        obj['isDefault'] = ApiClient.convertToType(data['isDefault'], 'Boolean');
-      }
-      if (data.hasOwnProperty('placeName')) {
-        obj['placeName'] = ApiClient.convertToType(data['placeName'], 'String');
+      if (data.hasOwnProperty('data')) {
+        obj['data'] = GetUsersSuccessResponseStatusData.constructFromObject(data['data']);
       }
     }
     return obj;
   }
 
   /**
-   * Phone number
-   * @member {String} number
+   * @member {Number} code
    */
-  exports.prototype['number'] = undefined;
+  exports.prototype['code'] = undefined;
   /**
-   * Description (Mobile, Office)
-   * @member {String} description
+   * @member {module:model/GetUsersSuccessResponseStatusData} data
    */
-  exports.prototype['description'] = undefined;
-  /**
-   * true/false
-   * @member {Boolean} isDefault
-   */
-  exports.prototype['isDefault'] = undefined;
-  /**
-   * Name of the corresponding place name
-   * @member {String} placeName
-   */
-  exports.prototype['placeName'] = undefined;
+  exports.prototype['data'] = undefined;
 
 
 
