@@ -1,6 +1,6 @@
 {
   "name": "genesys-provisioning-client-js",
-   "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provisioning API used to create objects in configuration server in a way that is consistent with the BEC model",
   "license": "MIT",
   "main": "src/index.js",
@@ -12,7 +12,7 @@
     "js",
     "genesys",
     "provisioning",
-	"users",
+    "users",
     "objects",
     "configuration-server"
   ],
