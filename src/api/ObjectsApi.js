@@ -45,13 +45,6 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the getObject operation.
-     * @callback module:api/ObjectsApi~getObjectCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetObjectsSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Read DNs or Agent Groups
@@ -64,10 +57,9 @@
      * @param {String} opts.searchTerm Part of a key in CFGDN or CfgAgentGroup. 
      * @param {String} opts.searchKey A keypath in CFGDN or CfgAgentGroup. 
      * @param {String} opts.matchMethod Method to match the search_term (&#39;includes&#39;, &#39;startsWith&#39;, &#39;endsWith&#39;, &#39;isEqual&#39;). 
-     * @param {module:api/ObjectsApi~getObjectCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetObjectsSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetObjectsSuccessResponse}
      */
-    this.getObject = function(objectType, opts, callback) {
+    this.getObject = function(objectType, opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -101,7 +93,7 @@
       return this.apiClient.callApi(
         '/objects/{object_type}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
   };

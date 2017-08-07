@@ -45,22 +45,14 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the addUser operation.
-     * @callback module:api/UsersApi~addUserCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Create new user
      * The POST operation will create a new CfgPerson object in configuration server and configure related objects
      * @param {module:model/AddUserData} body User Data
-     * @param {module:api/UsersApi~addUserCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.addUser = function(body, callback) {
+    this.addUser = function(body) {
       var postBody = body;
 
       // verify the required parameter 'body' is set
@@ -86,27 +78,19 @@
       return this.apiClient.callApi(
         '/users', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the deleteUser operation.
-     * @callback module:api/UsersApi~deleteUserCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Remove user
      * This operation will delete the specified CfgPerson and connected with it CfgAgentLogin, CfgPlace, CfgDN objects in configuration server.
      * @param {String} dbid User DBID
      * @param {module:model/DeleteUserData} deleteUserData Delete user data
-     * @param {module:api/UsersApi~deleteUserCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.deleteUser = function(dbid, deleteUserData, callback) {
+    this.deleteUser = function(dbid, deleteUserData) {
       var postBody = deleteUserData;
 
       // verify the required parameter 'dbid' is set
@@ -138,26 +122,18 @@
       return this.apiClient.callApi(
         '/users/{dbid}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the getUser operation.
-     * @callback module:api/UsersApi~getUserCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetUsersSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Get user
      * The GET operation will fetch specified CfgPerson object from configuration server
      * @param {String} dbid User DBID or string &#39;me&#39; or &#39;skills&#39;
-     * @param {module:api/UsersApi~getUserCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetUsersSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetUsersSuccessResponse}
      */
-    this.getUser = function(dbid, callback) {
+    this.getUser = function(dbid) {
       var postBody = null;
 
       // verify the required parameter 'dbid' is set
@@ -184,17 +160,10 @@
       return this.apiClient.callApi(
         '/users/{dbid}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the getUsers operation.
-     * @callback module:api/UsersApi~getUsersCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetUsersSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Read users
@@ -210,10 +179,9 @@
      * @param {String} opts.skills Only fetch users with specified skills, comma-separated. 
      * @param {Boolean} opts.userEnabled Fetch only enabled or disabled users.
      * @param {module:model/String} opts.userValid Fetch only valid or invalid users.
-     * @param {module:api/UsersApi~getUsersCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetUsersSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetUsersSuccessResponse}
      */
-    this.getUsers = function(opts, callback) {
+    this.getUsers = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -245,27 +213,19 @@
       return this.apiClient.callApi(
         '/users', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the updateUser operation.
-     * @callback module:api/UsersApi~updateUserCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Update user
      * This operation will update the specified CfgPerson object in configuration server. Almost the same set of attributes as \&quot;POST\&quot;.
      * @param {String} dbid User DBID
      * @param {module:model/UpdateUserData} updateUserData Update user data
-     * @param {module:api/UsersApi~updateUserCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.updateUser = function(dbid, updateUserData, callback) {
+    this.updateUser = function(dbid, updateUserData) {
       var postBody = updateUserData;
 
       // verify the required parameter 'dbid' is set
@@ -297,7 +257,7 @@
       return this.apiClient.callApi(
         '/users/{dbid}', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
   };

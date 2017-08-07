@@ -45,22 +45,14 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the exportFile operation.
-     * @callback module:api/ExportApi~exportFileCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ExportFileResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Export selected users
      * The POST operation will export selected users with selected properties.
      * @param {module:model/ExportFileData} exportFileData Export File Data
-     * @param {module:api/ExportApi~exportFileCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ExportFileResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ExportFileResponse}
      */
-    this.exportFile = function(exportFileData, callback) {
+    this.exportFile = function(exportFileData) {
       var postBody = exportFileData;
 
       // verify the required parameter 'exportFileData' is set
@@ -86,26 +78,18 @@
       return this.apiClient.callApi(
         '/export_users', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the getExportStatus operation.
-     * @callback module:api/ExportApi~getExportStatusCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetExportStatusResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Get export operation status
      * The GET operation will check export status and returns percentage complete.
      * @param {Number} id And export ID that was got previously.
-     * @param {module:api/ExportApi~getExportStatusCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetExportStatusResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetExportStatusResponse}
      */
-    this.getExportStatus = function(id, callback) {
+    this.getExportStatus = function(id) {
       var postBody = null;
 
       // verify the required parameter 'id' is set
@@ -132,7 +116,7 @@
       return this.apiClient.callApi(
         '/export_users/{id}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
   };

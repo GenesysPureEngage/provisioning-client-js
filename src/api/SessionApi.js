@@ -45,22 +45,14 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the login operation.
-     * @callback module:api/SessionApi~loginCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/LoginSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Authenticate user
      * Login operation will create a new sessionId and set default.yml:common.cookieName cookie (PROVISIONING_SESSIONID by default).
      * @param {module:model/LoginData} body Authentication Data
-     * @param {module:api/SessionApi~loginCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/LoginSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/LoginSuccessResponse}
      */
-    this.login = function(body, callback) {
+    this.login = function(body) {
       var postBody = body;
 
       // verify the required parameter 'body' is set
@@ -86,25 +78,17 @@
       return this.apiClient.callApi(
         '/login', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the logout operation.
-     * @callback module:api/SessionApi~logoutCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Logout user
      * The POST operation will delete a session and remove associated cookie 
-     * @param {module:api/SessionApi~logoutCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.logout = function(callback) {
+    this.logout = function() {
       var postBody = null;
 
 
@@ -125,7 +109,7 @@
       return this.apiClient.callApi(
         '/logout', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
   };

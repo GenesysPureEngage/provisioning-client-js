@@ -45,13 +45,6 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the getOptions operation.
-     * @callback module:api/OptionsApi~getOptionsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetOptionsResponseSuccess} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Read options
@@ -59,10 +52,9 @@
      * @param {Object} opts Optional parameters
      * @param {String} opts.personDbid DBID of a person. Options will be merged with the Person&#39;s annex and annexes of it&#39;s agent groups. Mutual with agent_group_dbid.
      * @param {String} opts.agentGroupDbid DBID of a person. Options will be merged with the Agent Groups&#39;s annex. Mutual with person_dbid.
-     * @param {module:api/OptionsApi~getOptionsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetOptionsResponseSuccess}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetOptionsResponseSuccess}
      */
-    this.getOptions = function(opts, callback) {
+    this.getOptions = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -86,26 +78,18 @@
       return this.apiClient.callApi(
         '/options', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the modifyOptions operation.
-     * @callback module:api/OptionsApi~modifyOptionsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Modify options
      * The POST operation will replace CloudCluster/Options with new values
      * @param {module:model/ModifyOptionsData} body Body Data
-     * @param {module:api/OptionsApi~modifyOptionsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.modifyOptions = function(body, callback) {
+    this.modifyOptions = function(body) {
       var postBody = body;
 
       // verify the required parameter 'body' is set
@@ -131,26 +115,18 @@
       return this.apiClient.callApi(
         '/options', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the updateOptions operation.
-     * @callback module:api/OptionsApi~updateOptionsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Add, edit or delete options
      * The PUT operation will add, change or delete values in CloudCluster/Options.
      * @param {module:model/UpdateOptionsData} body Body Data
-     * @param {module:api/OptionsApi~updateOptionsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.updateOptions = function(body, callback) {
+    this.updateOptions = function(body) {
       var postBody = body;
 
       // verify the required parameter 'body' is set
@@ -176,7 +152,7 @@
       return this.apiClient.callApi(
         '/options', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
   };

@@ -45,23 +45,15 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the getImportStatus operation.
-     * @callback module:api/ImportApi~getImportStatusCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetImportStatusResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Get import users status
      * The GET operation will get active importers.
      * @param {String} adminName Admin login.
      * @param {String} tenantName Tenant name.
-     * @param {module:api/ImportApi~getImportStatusCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetImportStatusResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetImportStatusResponse}
      */
-    this.getImportStatus = function(adminName, tenantName, callback) {
+    this.getImportStatus = function(adminName, tenantName) {
       var postBody = null;
 
       // verify the required parameter 'adminName' is set
@@ -94,17 +86,10 @@
       return this.apiClient.callApi(
         '/import-users/check-status', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the importFile operation.
-     * @callback module:api/ImportApi~importFileCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Import file
@@ -112,10 +97,9 @@
      * @param {Object} opts Optional parameters
      * @param {File} opts.csvfile CSV/XLS file to import.
      * @param {Boolean} opts.validateBeforeImport Validate file before actual import. (default to false)
-     * @param {module:api/ImportApi~importFileCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.importFile = function(opts, callback) {
+    this.importFile = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -139,27 +123,19 @@
       return this.apiClient.callApi(
         '/import-users/csv', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
-    /**
-     * Callback function to receive the result of the validateImportFile operation.
-     * @callback module:api/ImportApi~validateImportFileCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/ApiSuccessResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * Perform import file prevalidation
      * The POST operation validate import file.
      * @param {Object} opts Optional parameters
      * @param {File} opts.csvfile CSV/XLS file to import.
-     * @param {module:api/ImportApi~validateImportFileCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/ApiSuccessResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
-    this.validateImportFile = function(opts, callback) {
+    this.validateImportFile = function(opts) {
       opts = opts || {};
       var postBody = null;
 
@@ -182,7 +158,7 @@
       return this.apiClient.callApi(
         '/import-users/validate-csv', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
   };
