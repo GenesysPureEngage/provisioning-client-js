@@ -25,7 +25,7 @@
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.ApiSuccessResponseStatus = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.ChangePasswordData = factory(root.ProvisioningApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -34,45 +34,66 @@
 
 
   /**
-   * The ApiSuccessResponseStatus model module.
-   * @module model/ApiSuccessResponseStatus
+   * The ChangePasswordData model module.
+   * @module model/ChangePasswordData
    * @version 9.0.000.00.806
    */
 
   /**
-   * Constructs a new <code>ApiSuccessResponseStatus</code>.
-   * @alias module:model/ApiSuccessResponseStatus
+   * Constructs a new <code>ChangePasswordData</code>.
+   * @alias module:model/ChangePasswordData
    * @class
+   * @param domainUsername {String} User unique login in form: domain.com\\login 
+   * @param oldPassword {String} Old password as plain text. 
+   * @param newPassword {String} New password as plain text. 
    */
-  var exports = function() {
+  var exports = function(domainUsername, oldPassword, newPassword) {
     var _this = this;
 
-
+    _this['domain_username'] = domainUsername;
+    _this['oldPassword'] = oldPassword;
+    _this['newPassword'] = newPassword;
   };
 
   /**
-   * Constructs a <code>ApiSuccessResponseStatus</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>ChangePasswordData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/ApiSuccessResponseStatus} obj Optional instance to populate.
-   * @return {module:model/ApiSuccessResponseStatus} The populated <code>ApiSuccessResponseStatus</code> instance.
+   * @param {module:model/ChangePasswordData} obj Optional instance to populate.
+   * @return {module:model/ChangePasswordData} The populated <code>ChangePasswordData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('code')) {
-        obj['code'] = ApiClient.convertToType(data['code'], 'Number');
+      if (data.hasOwnProperty('domain_username')) {
+        obj['domain_username'] = ApiClient.convertToType(data['domain_username'], 'String');
+      }
+      if (data.hasOwnProperty('oldPassword')) {
+        obj['oldPassword'] = ApiClient.convertToType(data['oldPassword'], 'String');
+      }
+      if (data.hasOwnProperty('newPassword')) {
+        obj['newPassword'] = ApiClient.convertToType(data['newPassword'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * Zero integer indicating success
-   * @member {Number} code
+   * User unique login in form: domain.com\\login 
+   * @member {String} domain_username
    */
-  exports.prototype['code'] = undefined;
+  exports.prototype['domain_username'] = undefined;
+  /**
+   * Old password as plain text. 
+   * @member {String} oldPassword
+   */
+  exports.prototype['oldPassword'] = undefined;
+  /**
+   * New password as plain text. 
+   * @member {String} newPassword
+   */
+  exports.prototype['newPassword'] = undefined;
 
 
 

@@ -16,62 +16,63 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/ApiErrorResponseStatus'], factory);
+    define(['ApiClient', 'model/ApiAuditSuccessResponseDataRows'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./ApiErrorResponseStatus'));
+    module.exports = factory(require('../ApiClient'), require('./ApiAuditSuccessResponseDataRows'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.ApiErrorResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.ApiErrorResponseStatus);
+    root.ProvisioningApi.ApiAuditSuccessResponseData = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.ApiAuditSuccessResponseDataRows);
   }
-}(this, function(ApiClient, ApiErrorResponseStatus) {
+}(this, function(ApiClient, ApiAuditSuccessResponseDataRows) {
   'use strict';
 
 
 
 
   /**
-   * The ApiErrorResponse model module.
-   * @module model/ApiErrorResponse
+   * The ApiAuditSuccessResponseData model module.
+   * @module model/ApiAuditSuccessResponseData
    * @version 9.0.000.00.806
    */
 
   /**
-   * Constructs a new <code>ApiErrorResponse</code>.
-   * @alias module:model/ApiErrorResponse
+   * Constructs a new <code>ApiAuditSuccessResponseData</code>.
+   * @alias module:model/ApiAuditSuccessResponseData
    * @class
+   * @param rows {Array.<module:model/ApiAuditSuccessResponseDataRows>} 
    */
-  var exports = function() {
+  var exports = function(rows) {
     var _this = this;
 
-
+    _this['rows'] = rows;
   };
 
   /**
-   * Constructs a <code>ApiErrorResponse</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>ApiAuditSuccessResponseData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/ApiErrorResponse} obj Optional instance to populate.
-   * @return {module:model/ApiErrorResponse} The populated <code>ApiErrorResponse</code> instance.
+   * @param {module:model/ApiAuditSuccessResponseData} obj Optional instance to populate.
+   * @return {module:model/ApiAuditSuccessResponseData} The populated <code>ApiAuditSuccessResponseData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('status')) {
-        obj['status'] = ApiErrorResponseStatus.constructFromObject(data['status']);
+      if (data.hasOwnProperty('rows')) {
+        obj['rows'] = ApiClient.convertToType(data['rows'], [ApiAuditSuccessResponseDataRows]);
       }
     }
     return obj;
   }
 
   /**
-   * @member {module:model/ApiErrorResponseStatus} status
+   * @member {Array.<module:model/ApiAuditSuccessResponseDataRows>} rows
    */
-  exports.prototype['status'] = undefined;
+  exports.prototype['rows'] = undefined;
 
 
 
