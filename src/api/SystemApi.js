@@ -16,29 +16,29 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/ApiErrorResponse'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('../model/ApiErrorResponse'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.DocumentationApi = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.SystemApi = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.ApiErrorResponse);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, ApiErrorResponse) {
   'use strict';
 
   /**
-   * Documentation service.
-   * @module api/DocumentationApi
+   * System service.
+   * @module api/SystemApi
    * @version 9.0.000.00.869
    */
 
   /**
-   * Constructs a new DocumentationApi. 
-   * @alias module:api/DocumentationApi
+   * Constructs a new SystemApi. 
+   * @alias module:api/SystemApi
    * @class
    * @param {module:ApiClient} apiClient Optional API client implementation to use,
    * default to {@link module:ApiClient#instance} if unspecified.
@@ -49,15 +49,22 @@
 
 
     /**
-     * Returns API description in Swagger format
-     * Returns API description in Swagger format
+     * execute service method on Node to avoid excessive requests from client
+     * This operation will execute service method on Node
+     * @param {String} serviceName Service name
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
      */
-    this.swaggerDocWithHttpInfo = function() {
+    this.executeServiceMethodWithHttpInfo = function(serviceName) {
       var postBody = null;
+
+      // verify the required parameter 'serviceName' is set
+      if (serviceName === undefined || serviceName === null) {
+        throw new Error("Missing the required parameter 'serviceName' when calling executeServiceMethod");
+      }
 
 
       var pathParams = {
+        'serviceName': serviceName
       };
       var queryParams = {
       };
@@ -72,19 +79,20 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/doc', 'GET',
+        '/service-proxy/{serviceName}', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Returns API description in Swagger format
-     * Returns API description in Swagger format
+     * execute service method on Node to avoid excessive requests from client
+     * This operation will execute service method on Node
+     * @param {String} serviceName Service name
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}
      */
-    this.swaggerDoc = function() {
-      return this.swaggerDocWithHttpInfo()
+    this.executeServiceMethod = function(serviceName) {
+      return this.executeServiceMethodWithHttpInfo(serviceName)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
