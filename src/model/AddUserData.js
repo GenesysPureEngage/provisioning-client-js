@@ -56,6 +56,7 @@
 
 
 
+
     _this['userName'] = userName;
     _this['firstName'] = firstName;
     _this['lastName'] = lastName;
@@ -100,6 +101,9 @@
       }
       if (data.hasOwnProperty('enabled')) {
         obj['enabled'] = ApiClient.convertToType(data['enabled'], 'Boolean');
+      }
+      if (data.hasOwnProperty('folder')) {
+        obj['folder'] = ApiClient.convertToType(data['folder'], 'String');
       }
       if (data.hasOwnProperty('userName')) {
         obj['userName'] = ApiClient.convertToType(data['userName'], 'String');
@@ -186,6 +190,11 @@
    * @default true
    */
   exports.prototype['enabled'] = true;
+  /**
+   * Folder where create a new user. If no folder is specified user will be created in a root folder 
+   * @member {String} folder
+   */
+  exports.prototype['folder'] = undefined;
   /**
    * User unique login.  Effect: Controls the value of the corresponding CfgPerson attribute 
    * @member {String} userName
