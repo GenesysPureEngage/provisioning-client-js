@@ -46,14 +46,15 @@
    * @param fields {Array.<String>} Array of user property names to include  Effect: Only these names will be included in exported user structure 
    * @param fileName {String} File Name to save exported users.  Effect: Controls the file name to save. 
    * @param personDBIDs {Array.<String>} List of User IDs to export  Effect: Controls which users will be exported. 
+   * @param filterParameters {module:model/ExportFileDataFilterParameters} 
    */
-  var exports = function(fields, fileName, personDBIDs) {
+  var exports = function(fields, fileName, personDBIDs, filterParameters) {
     var _this = this;
 
     _this['fields'] = fields;
     _this['fileName'] = fileName;
     _this['personDBIDs'] = personDBIDs;
-
+    _this['filterParameters'] = filterParameters;
   };
 
   /**

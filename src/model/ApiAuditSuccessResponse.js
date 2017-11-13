@@ -44,12 +44,13 @@
    * @alias module:model/ApiAuditSuccessResponse
    * @class
    * @param code {Number} Zero code meaning success
+   * @param data {module:model/ApiAuditSuccessResponseData} 
    */
-  var exports = function(code) {
+  var exports = function(code, data) {
     var _this = this;
 
     _this['code'] = code;
-
+    _this['data'] = data;
   };
 
   /**
