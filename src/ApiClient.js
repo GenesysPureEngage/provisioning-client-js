@@ -49,16 +49,16 @@ const CookieJar = require('cookiejar').CookieJar;
     /**
      * The base URL against which to resolve every API call's (relative) path.
      * @type {String}
-     * @default https://localhost/provisioning/v3
+     * @default http://localhost/provisioning/v3
      */
-    this.basePath = 'https://localhost/provisioning/v3'.replace(/\/+$/, '');
+    this.basePath = 'http://localhost/provisioning/v3'.replace(/\/+$/, '');
 
     /**
      * The authentication methods to be included for all API calls.
      * @type {Array.<String>}
      */
     this.authentications = {
-      'basicAuth': {type: 'basic'}
+      'Authorization': {type: 'apiKey', 'in': 'header', name: 'Authorization'}
     };
     /**
      * The default HTTP headers to be included for all API calls.
