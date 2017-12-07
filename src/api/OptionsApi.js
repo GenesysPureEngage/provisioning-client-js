@@ -131,7 +131,7 @@
       var formParams = {
       };
 
-      var authNames = ['basicAuth'];
+      var authNames = [];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = ApiSuccessResponse;
@@ -183,7 +183,7 @@
       var formParams = {
       };
 
-      var authNames = ['basicAuth'];
+      var authNames = [];
       var contentTypes = ['application/json'];
       var accepts = ['application/json'];
       var returnType = ApiSuccessResponse;

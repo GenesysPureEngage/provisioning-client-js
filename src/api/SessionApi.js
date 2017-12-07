@@ -51,7 +51,7 @@
     /**
      * Authenticate user
      * Initialize-provisioning operation will create a new sessionId and set default.yml:common.cookieName cookie (PROVISIONING_SESSIONID by default). 
-     * @param {module:model/InitProvData} code Authentication code recieved from the Auth service
+     * @param {module:model/InitProvData} code Authentication code received from the Auth service
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/LoginSuccessResponse} and HTTP response
      */
     this.initializeProvisioningWithHttpInfo = function(code) {
@@ -89,7 +89,7 @@
     /**
      * Authenticate user
      * Initialize-provisioning operation will create a new sessionId and set default.yml:common.cookieName cookie (PROVISIONING_SESSIONID by default). 
-     * @param {module:model/InitProvData} code Authentication code recieved from the Auth service
+     * @param {module:model/InitProvData} code Authentication code received from the Auth service
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/LoginSuccessResponse}
      */
     this.initializeProvisioning = function(code) {

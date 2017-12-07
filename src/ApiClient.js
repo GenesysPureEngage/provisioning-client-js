@@ -58,7 +58,7 @@ const CookieJar = require('cookiejar').CookieJar;
      * @type {Array.<String>}
      */
     this.authentications = {
-      'basicAuth': {type: 'basic'}
+      'Authorization': {type: 'apiKey', 'in': 'header', name: 'Authorization'}
     };
     /**
      * The default HTTP headers to be included for all API calls.
