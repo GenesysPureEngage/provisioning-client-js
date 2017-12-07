@@ -16,32 +16,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/GetObjectsSuccessResponseData'], factory);
+    define(['ApiClient', 'model/ApiSuccessResponseStatus', 'model/LoginSuccessResponseData'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./GetObjectsSuccessResponseData'));
+    module.exports = factory(require('../ApiClient'), require('./ApiSuccessResponseStatus'), require('./LoginSuccessResponseData'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetObjectsSuccessResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.GetObjectsSuccessResponseData);
+    root.ProvisioningApi.LoginSuccessResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.ApiSuccessResponseStatus, root.ProvisioningApi.LoginSuccessResponseData);
   }
-}(this, function(ApiClient, GetObjectsSuccessResponseData) {
+}(this, function(ApiClient, ApiSuccessResponseStatus, LoginSuccessResponseData) {
   'use strict';
 
 
 
 
   /**
-   * The GetObjectsSuccessResponse model module.
-   * @module model/GetObjectsSuccessResponse
+   * The LoginSuccessResponse model module.
+   * @module model/LoginSuccessResponse
    * @version 9.0.000.05.1207
    */
 
   /**
-   * Constructs a new <code>GetObjectsSuccessResponse</code>.
-   * @alias module:model/GetObjectsSuccessResponse
+   * Constructs a new <code>LoginSuccessResponse</code>.
+   * @alias module:model/LoginSuccessResponse
    * @class
    */
   var exports = function() {
@@ -52,32 +52,32 @@
   };
 
   /**
-   * Constructs a <code>GetObjectsSuccessResponse</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>LoginSuccessResponse</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetObjectsSuccessResponse} obj Optional instance to populate.
-   * @return {module:model/GetObjectsSuccessResponse} The populated <code>GetObjectsSuccessResponse</code> instance.
+   * @param {module:model/LoginSuccessResponse} obj Optional instance to populate.
+   * @return {module:model/LoginSuccessResponse} The populated <code>LoginSuccessResponse</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('code')) {
-        obj['code'] = ApiClient.convertToType(data['code'], 'Number');
+      if (data.hasOwnProperty('status')) {
+        obj['status'] = ApiSuccessResponseStatus.constructFromObject(data['status']);
       }
       if (data.hasOwnProperty('data')) {
-        obj['data'] = GetObjectsSuccessResponseData.constructFromObject(data['data']);
+        obj['data'] = LoginSuccessResponseData.constructFromObject(data['data']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {Number} code
+   * @member {module:model/ApiSuccessResponseStatus} status
    */
-  exports.prototype['code'] = undefined;
+  exports.prototype['status'] = undefined;
   /**
-   * @member {module:model/GetObjectsSuccessResponseData} data
+   * @member {module:model/LoginSuccessResponseData} data
    */
   exports.prototype['data'] = undefined;
 
