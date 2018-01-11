@@ -105,7 +105,7 @@
      * Remove the specified user, along with their associated login, places, and DNs. This removes the [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) object and any associated [CfgAgentLogin](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgAgentLogin), [CfgPlace](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPlace), [CfgDN](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgDN) objects.
      * @param {String} dbid The users&#39; DBID.
      * @param {Object} opts Optional parameters
-     * @param {String} opts.keepPlaces If &#x60;true&#x60; or absent, the user&#39;s places and DNs are not deleted. 
+     * @param {Boolean} opts.keepPlaces If &#x60;true&#x60; or absent, the user&#39;s places and DNs are not deleted. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/ApiSuccessResponse} and HTTP response
      */
     this.deleteUserWithHttpInfo = function(dbid, opts) {
@@ -148,7 +148,7 @@
      * Remove the specified user, along with their associated login, places, and DNs. This removes the [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) object and any associated [CfgAgentLogin](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgAgentLogin), [CfgPlace](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPlace), [CfgDN](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgDN) objects.
      * @param {String} dbid The users&#39; DBID.
      * @param {Object} opts Optional parameters
-     * @param {String} opts.keepPlaces If &#x60;true&#x60; or absent, the user&#39;s places and DNs are not deleted. 
+     * @param {Boolean} opts.keepPlaces If &#x60;true&#x60; or absent, the user&#39;s places and DNs are not deleted. 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/ApiSuccessResponse}
      */
     this.deleteUser = function(dbid, opts) {
