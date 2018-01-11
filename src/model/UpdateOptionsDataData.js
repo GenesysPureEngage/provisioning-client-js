@@ -25,7 +25,7 @@
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.ExportFileResponseData = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.UpdateOptionsDataData = factory(root.ProvisioningApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -34,45 +34,72 @@
 
 
   /**
-   * The ExportFileResponseData model module.
-   * @module model/ExportFileResponseData
+   * The UpdateOptionsDataData model module.
+   * @module model/UpdateOptionsDataData
    * @version 9.0.000.06.1357
    */
 
   /**
-   * Constructs a new <code>ExportFileResponseData</code>.
-   * @alias module:model/ExportFileResponseData
+   * Constructs a new <code>UpdateOptionsDataData</code>.
+   * @alias module:model/UpdateOptionsDataData
    * @class
    */
   var exports = function() {
     var _this = this;
 
 
+
+
+
   };
 
   /**
-   * Constructs a <code>ExportFileResponseData</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>UpdateOptionsDataData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/ExportFileResponseData} obj Optional instance to populate.
-   * @return {module:model/ExportFileResponseData} The populated <code>ExportFileResponseData</code> instance.
+   * @param {module:model/UpdateOptionsDataData} obj Optional instance to populate.
+   * @return {module:model/UpdateOptionsDataData} The populated <code>UpdateOptionsDataData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('id')) {
-        obj['id'] = ApiClient.convertToType(data['id'], 'Number');
+      if (data.hasOwnProperty('application')) {
+        obj['application'] = ApiClient.convertToType(data['application'], 'String');
+      }
+      if (data.hasOwnProperty('newOptions')) {
+        obj['newOptions'] = ApiClient.convertToType(data['newOptions'], Object);
+      }
+      if (data.hasOwnProperty('changedOptions')) {
+        obj['changedOptions'] = ApiClient.convertToType(data['changedOptions'], Object);
+      }
+      if (data.hasOwnProperty('deletedOptions')) {
+        obj['deletedOptions'] = ApiClient.convertToType(data['deletedOptions'], Object);
       }
     }
     return obj;
   }
 
   /**
-   * Export ID 
-   * @member {Number} id
+   * The name of the application where the options should be updated. This value is set to CloudCluster by default. 
+   * @member {String} application
    */
-  exports.prototype['id'] = undefined;
+  exports.prototype['application'] = undefined;
+  /**
+   * The options to add in the application. 
+   * @member {Object} newOptions
+   */
+  exports.prototype['newOptions'] = undefined;
+  /**
+   * The option values to update in the application. 
+   * @member {Object} changedOptions
+   */
+  exports.prototype['changedOptions'] = undefined;
+  /**
+   * The options to delete in the application. 
+   * @member {Object} deletedOptions
+   */
+  exports.prototype['deletedOptions'] = undefined;
 
 
 
