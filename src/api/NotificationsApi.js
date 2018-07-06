@@ -74,7 +74,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/notifications/connect', 'POST',
+        '/notifications-cometd/connect', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
@@ -119,7 +119,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/notifications/disconnect', 'POST',
+        '/notifications-cometd/disconnect', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
@@ -164,7 +164,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/notifications/handshake', 'POST',
+        '/notifications-cometd/handshake', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
@@ -209,7 +209,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/notifications', 'POST',
+        '/notifications-cometd', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
@@ -254,7 +254,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/notifications/subscribe', 'POST',
+        '/notifications-cometd/subscribe', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
@@ -299,7 +299,7 @@
       var returnType = null;
 
       return this.apiClient.callApi(
-        '/notifications/unsubscribe', 'POST',
+        '/notifications-cometd/unsubscribe', 'POST',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
