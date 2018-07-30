@@ -25,7 +25,7 @@
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetOptionsResponseData = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.CreateUserSuccessResponseStatus = factory(root.ProvisioningApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -34,63 +34,44 @@
 
 
   /**
-   * The GetOptionsResponseData model module.
-   * @module model/GetOptionsResponseData
+   * The CreateUserSuccessResponseStatus model module.
+   * @module model/CreateUserSuccessResponseStatus
    * @version 9.0.000.24.2505
    */
 
   /**
-   * Constructs a new <code>GetOptionsResponseData</code>.
-   * @alias module:model/GetOptionsResponseData
+   * Constructs a new <code>CreateUserSuccessResponseStatus</code>.
+   * @alias module:model/CreateUserSuccessResponseStatus
    * @class
    */
   var exports = function() {
     var _this = this;
 
 
-
-
   };
 
   /**
-   * Constructs a <code>GetOptionsResponseData</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>CreateUserSuccessResponseStatus</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetOptionsResponseData} obj Optional instance to populate.
-   * @return {module:model/GetOptionsResponseData} The populated <code>GetOptionsResponseData</code> instance.
+   * @param {module:model/CreateUserSuccessResponseStatus} obj Optional instance to populate.
+   * @return {module:model/CreateUserSuccessResponseStatus} The populated <code>CreateUserSuccessResponseStatus</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('options')) {
-        obj['options'] = ApiClient.convertToType(data['options'], Object);
-      }
-      if (data.hasOwnProperty('cmeAppName')) {
-        obj['cmeAppName'] = ApiClient.convertToType(data['cmeAppName'], 'String');
-      }
-      if (data.hasOwnProperty('cmeAppDBID')) {
-        obj['cmeAppDBID'] = ApiClient.convertToType(data['cmeAppDBID'], 'String');
+      if (data.hasOwnProperty('code')) {
+        obj['code'] = ApiClient.convertToType(data['code'], 'Number');
       }
     }
     return obj;
   }
 
   /**
-   * The option sections, keys and values for the specified application.
-   * @member {Object} options
+   * @member {Number} code
    */
-  exports.prototype['options'] = undefined;
-  /**
-   * The name of the application.
-   * @member {String} cmeAppName
-   */
-  exports.prototype['cmeAppName'] = undefined;
-  /**
-   * The DBID of the application.
-   * @member {String} cmeAppDBID
-   */
-  exports.prototype['cmeAppDBID'] = undefined;
+  exports.prototype['code'] = undefined;
 
 
 
