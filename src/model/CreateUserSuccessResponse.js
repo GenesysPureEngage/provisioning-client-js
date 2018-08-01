@@ -16,32 +16,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/CreateUserSuccessResponseData', 'model/CreateUserSuccessResponseStatus'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./CreateUserSuccessResponseData'), require('./CreateUserSuccessResponseStatus'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetOptionsResponseData = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.CreateUserSuccessResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CreateUserSuccessResponseData, root.ProvisioningApi.CreateUserSuccessResponseStatus);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, CreateUserSuccessResponseData, CreateUserSuccessResponseStatus) {
   'use strict';
 
 
 
 
   /**
-   * The GetOptionsResponseData model module.
-   * @module model/GetOptionsResponseData
+   * The CreateUserSuccessResponse model module.
+   * @module model/CreateUserSuccessResponse
    * @version 9.0.000.24.2505
    */
 
   /**
-   * Constructs a new <code>GetOptionsResponseData</code>.
-   * @alias module:model/GetOptionsResponseData
+   * Constructs a new <code>CreateUserSuccessResponse</code>.
+   * @alias module:model/CreateUserSuccessResponse
    * @class
    */
   var exports = function() {
@@ -49,48 +49,37 @@
 
 
 
-
   };
 
   /**
-   * Constructs a <code>GetOptionsResponseData</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>CreateUserSuccessResponse</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetOptionsResponseData} obj Optional instance to populate.
-   * @return {module:model/GetOptionsResponseData} The populated <code>GetOptionsResponseData</code> instance.
+   * @param {module:model/CreateUserSuccessResponse} obj Optional instance to populate.
+   * @return {module:model/CreateUserSuccessResponse} The populated <code>CreateUserSuccessResponse</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('options')) {
-        obj['options'] = ApiClient.convertToType(data['options'], Object);
+      if (data.hasOwnProperty('status')) {
+        obj['status'] = CreateUserSuccessResponseStatus.constructFromObject(data['status']);
       }
-      if (data.hasOwnProperty('cmeAppName')) {
-        obj['cmeAppName'] = ApiClient.convertToType(data['cmeAppName'], 'String');
-      }
-      if (data.hasOwnProperty('cmeAppDBID')) {
-        obj['cmeAppDBID'] = ApiClient.convertToType(data['cmeAppDBID'], 'String');
+      if (data.hasOwnProperty('data')) {
+        obj['data'] = CreateUserSuccessResponseData.constructFromObject(data['data']);
       }
     }
     return obj;
   }
 
   /**
-   * The option sections, keys and values for the specified application.
-   * @member {Object} options
+   * @member {module:model/CreateUserSuccessResponseStatus} status
    */
-  exports.prototype['options'] = undefined;
+  exports.prototype['status'] = undefined;
   /**
-   * The name of the application.
-   * @member {String} cmeAppName
+   * @member {module:model/CreateUserSuccessResponseData} data
    */
-  exports.prototype['cmeAppName'] = undefined;
-  /**
-   * The DBID of the application.
-   * @member {String} cmeAppDBID
-   */
-  exports.prototype['cmeAppDBID'] = undefined;
+  exports.prototype['data'] = undefined;
 
 
 

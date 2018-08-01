@@ -25,7 +25,7 @@
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetOptionsResponseData = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.CreateUserSuccessResponseDataPersonCfgAgentInfo = factory(root.ProvisioningApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -34,14 +34,14 @@
 
 
   /**
-   * The GetOptionsResponseData model module.
-   * @module model/GetOptionsResponseData
+   * The CreateUserSuccessResponseDataPersonCfgAgentInfo model module.
+   * @module model/CreateUserSuccessResponseDataPersonCfgAgentInfo
    * @version 9.0.000.24.2505
    */
 
   /**
-   * Constructs a new <code>GetOptionsResponseData</code>.
-   * @alias module:model/GetOptionsResponseData
+   * Constructs a new <code>CreateUserSuccessResponseDataPersonCfgAgentInfo</code>.
+   * @alias module:model/CreateUserSuccessResponseDataPersonCfgAgentInfo
    * @class
    */
   var exports = function() {
@@ -50,47 +50,52 @@
 
 
 
+
   };
 
   /**
-   * Constructs a <code>GetOptionsResponseData</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>CreateUserSuccessResponseDataPersonCfgAgentInfo</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetOptionsResponseData} obj Optional instance to populate.
-   * @return {module:model/GetOptionsResponseData} The populated <code>GetOptionsResponseData</code> instance.
+   * @param {module:model/CreateUserSuccessResponseDataPersonCfgAgentInfo} obj Optional instance to populate.
+   * @return {module:model/CreateUserSuccessResponseDataPersonCfgAgentInfo} The populated <code>CreateUserSuccessResponseDataPersonCfgAgentInfo</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('options')) {
-        obj['options'] = ApiClient.convertToType(data['options'], Object);
+      if (data.hasOwnProperty('placeDBID')) {
+        obj['placeDBID'] = ApiClient.convertToType(data['placeDBID'], 'String');
       }
-      if (data.hasOwnProperty('cmeAppName')) {
-        obj['cmeAppName'] = ApiClient.convertToType(data['cmeAppName'], 'String');
+      if (data.hasOwnProperty('siteDBID')) {
+        obj['siteDBID'] = ApiClient.convertToType(data['siteDBID'], 'String');
       }
-      if (data.hasOwnProperty('cmeAppDBID')) {
-        obj['cmeAppDBID'] = ApiClient.convertToType(data['cmeAppDBID'], 'String');
+      if (data.hasOwnProperty('contractDBID')) {
+        obj['contractDBID'] = ApiClient.convertToType(data['contractDBID'], 'String');
+      }
+      if (data.hasOwnProperty('capacityRuleDBID')) {
+        obj['capacityRuleDBID'] = ApiClient.convertToType(data['capacityRuleDBID'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * The option sections, keys and values for the specified application.
-   * @member {Object} options
+   * @member {String} placeDBID
    */
-  exports.prototype['options'] = undefined;
+  exports.prototype['placeDBID'] = undefined;
   /**
-   * The name of the application.
-   * @member {String} cmeAppName
+   * @member {String} siteDBID
    */
-  exports.prototype['cmeAppName'] = undefined;
+  exports.prototype['siteDBID'] = undefined;
   /**
-   * The DBID of the application.
-   * @member {String} cmeAppDBID
+   * @member {String} contractDBID
    */
-  exports.prototype['cmeAppDBID'] = undefined;
+  exports.prototype['contractDBID'] = undefined;
+  /**
+   * @member {String} capacityRuleDBID
+   */
+  exports.prototype['capacityRuleDBID'] = undefined;
 
 
 

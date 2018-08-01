@@ -16,32 +16,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/CreateUserSuccessResponseDataPerson'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./CreateUserSuccessResponseDataPerson'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetOptionsResponseData = factory(root.ProvisioningApi.ApiClient);
+    root.ProvisioningApi.CreateUserSuccessResponseData = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CreateUserSuccessResponseDataPerson);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, CreateUserSuccessResponseDataPerson) {
   'use strict';
 
 
 
 
   /**
-   * The GetOptionsResponseData model module.
-   * @module model/GetOptionsResponseData
+   * The CreateUserSuccessResponseData model module.
+   * @module model/CreateUserSuccessResponseData
    * @version 9.0.000.24.2505
    */
 
   /**
-   * Constructs a new <code>GetOptionsResponseData</code>.
-   * @alias module:model/GetOptionsResponseData
+   * Constructs a new <code>CreateUserSuccessResponseData</code>.
+   * @alias module:model/CreateUserSuccessResponseData
    * @class
    */
   var exports = function() {
@@ -49,48 +49,37 @@
 
 
 
-
   };
 
   /**
-   * Constructs a <code>GetOptionsResponseData</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>CreateUserSuccessResponseData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetOptionsResponseData} obj Optional instance to populate.
-   * @return {module:model/GetOptionsResponseData} The populated <code>GetOptionsResponseData</code> instance.
+   * @param {module:model/CreateUserSuccessResponseData} obj Optional instance to populate.
+   * @return {module:model/CreateUserSuccessResponseData} The populated <code>CreateUserSuccessResponseData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('options')) {
-        obj['options'] = ApiClient.convertToType(data['options'], Object);
+      if (data.hasOwnProperty('id')) {
+        obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
-      if (data.hasOwnProperty('cmeAppName')) {
-        obj['cmeAppName'] = ApiClient.convertToType(data['cmeAppName'], 'String');
-      }
-      if (data.hasOwnProperty('cmeAppDBID')) {
-        obj['cmeAppDBID'] = ApiClient.convertToType(data['cmeAppDBID'], 'String');
+      if (data.hasOwnProperty('person')) {
+        obj['person'] = CreateUserSuccessResponseDataPerson.constructFromObject(data['person']);
       }
     }
     return obj;
   }
 
   /**
-   * The option sections, keys and values for the specified application.
-   * @member {Object} options
+   * @member {String} id
    */
-  exports.prototype['options'] = undefined;
+  exports.prototype['id'] = undefined;
   /**
-   * The name of the application.
-   * @member {String} cmeAppName
+   * @member {module:model/CreateUserSuccessResponseDataPerson} person
    */
-  exports.prototype['cmeAppName'] = undefined;
-  /**
-   * The DBID of the application.
-   * @member {String} cmeAppDBID
-   */
-  exports.prototype['cmeAppDBID'] = undefined;
+  exports.prototype['person'] = undefined;
 
 
 
