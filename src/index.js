@@ -17,6 +17,13 @@ adaptCometDClientForNode();
 
 class ProvisioningApi {
 	
+	/**
+	 * Constructor
+	 * Constructs a new ProvisioningApi Object
+	 * @param {String} apiKey The API key used to access the provisioning api.
+	 * @param {String} provisioningUrl The URL of the provisioning service.
+	 * @param {Boolean} debugEnabled If set to true the ProvisioningApi will log it's activity with console.log.
+	 */
 	constructor(apiKey, provisioningUrl, debugEnabled) {
 		this._apiKey = apiKey;
 		this._provisioningUrl = provisioningUrl;
@@ -98,7 +105,14 @@ class ProvisioningApi {
 		}
 		this._log(`CometD Message on channel: ${msg.channel} with data: ${msg.data}`);
   	}
-	
+	/**
+	 * Initialize Provisioning.
+	 * Initialize provisioning with either an authorization token or and authorization code.
+	 * @param opts Optional parameters.
+	 * @param opts.token Token retrieved from authorization service when using resource owner grant.
+	 * @param opts.code Code retrieved from authorization service when using code grant.
+	 * @param opts.redirectUri The initial redirect URI used in oauth when using code grant.
+	 */
 	async initialize({token, code, redirectUri}) {
 		
 		let options = {};
@@ -132,10 +146,19 @@ class ProvisioningApi {
 		this.operations = new OperationsApi(this._client, this._log.bind(this));
 	}
 	
+	/**
+	 * Set Logger function.
+	 * Customize the logging of messages by setting the logger function that the ProvisioningApi will use to log it's activity (eg. on API calls or CometD notifications).
+	 * @param {Function} logger The custom logging function.
+	 */
 	setLogger(logger) {
 		if(typeof logger == "function") this._loggerFunction = logger;
 	}
 	
+	/**
+	 * Logout and Disconnect CometD
+	 * Logout of your Provisioning session and disconnect CometD. Only use after initializing.
+	 */
 	async done() {
 		if(this._initialized) {
 			this._log('Disconnecting CometD');
