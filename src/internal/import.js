@@ -12,9 +12,9 @@ class ImportApi {
 	/**
      * Import users.
      * Import users in the specified CSV/XLS file.
-     * @param {Object} opts Optional parameters
+     * @param {Object} opts Optional parameters.
      * @param {File} opts.csvfile The CSV/XLS file to import.
-     * @param {Boolean} opts.validateBeforeImport Specifies whether the Provisioning API should validate the file before the actual import takes place. (default to false)
+     * @param {Boolean} opts.validateBeforeImport Specifies whether the Provisioning API should validate the file before the actual import takes place. The default is `false`.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
 	async importFile(opts) {
@@ -35,7 +35,7 @@ class ImportApi {
 	}
 	
 	/**
-     * Stop import.
+     * Stop the import.
      * Terminates the current user import operation.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
@@ -47,7 +47,7 @@ class ImportApi {
 	/**
      * Validate the import file.
      * Performs pre-validation on the specified CSV/XLS file.
-     * @param {Object} opts Optional parameters
+     * @param {Object} opts Optional parameters.
      * @param {File} opts.csvfile The CSV/XLS file to import.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
