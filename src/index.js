@@ -100,7 +100,7 @@ class ProvisioningApi {
   	
   	_onCometdMessage(msg) {
   		msg = msg.data;
-		if(msg.channel == 'aio') {
+		if(msg.channel == 'operations') {
 			this.operations._onAsyncResponse(msg.data.id, msg.data.data);
 		}
 		this._log(`CometD Message on channel: ${msg.channel} with data: ${msg.data}`);
