@@ -35,7 +35,7 @@ const CookieJar = require('cookiejar').CookieJar;
 
   /**
    * @module ApiClient
-   * @version 9.0.000.22.2423
+   * @version 9.0.000.24.2505
    */
 
   /**
