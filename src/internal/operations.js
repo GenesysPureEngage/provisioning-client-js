@@ -16,7 +16,6 @@ class OperationsApi {
 			this._asyncCallbacks[id](response);
 	}
 	/**
-	 * Get users.
      * Get [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) objects based on the specified filters.
      * @param {asyncCallback} callback Returns with the requested data when asynchronous request is completed.
      * @param {Object} opts Optional parameters.
@@ -40,7 +39,6 @@ class OperationsApi {
 	}
 	
 	/**
-     * Get used skills.
      * Get all [CfgSkill](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgSkill) objects that are linked to existing [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) objects. 
      * @param {asyncCallback} callback Returns with the requested data when asynchronous request is completed.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}

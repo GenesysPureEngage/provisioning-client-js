@@ -9,7 +9,6 @@ class UsersApi {
 	}
 	
 	/**
-     * Create a user.
      * Create a user ([CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson)) with the specified attributes.
      * @param {Object} user The user object to be added.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data containing the ID and the person object.
@@ -20,7 +19,6 @@ class UsersApi {
 	}
 	
 	/**
-     * Update a user.
      * Update a user ([CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson)) with the specified attributes.
      * @param {String} dbid The user&#39;s DBID.
      * @param {Object} user The new user attributes.
@@ -32,7 +30,6 @@ class UsersApi {
 	}
 	
 	/**
-     * Remove a user.
      * Remove the specified user, along with their associated login, places, and DNs. This removes the [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) object and any associated [CfgAgentLogin](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgAgentLogin), [CfgPlace](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPlace), and [CfgDN](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgDN) objects. 
      * @param {String} dbid The users&#39; DBID.
      * @param {Boolean} keepPlaces If true or absent, the user&#39;s places and DNs are not deleted. 
@@ -44,7 +41,6 @@ class UsersApi {
 	}
 	
 	/**
-     * Get the logged in user.
      * Get the [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) object for the currently logged in user.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with the current user.
      */
@@ -54,7 +50,6 @@ class UsersApi {
 	}
 	
 	/**
-     * Get a user.
      * Get the specified [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) object.
      * @param {String} dbid The user&#39;s DBID.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with the retrieved user.
@@ -65,7 +60,6 @@ class UsersApi {
 	}
 	
 	/**
-     * Get users.
      * Get [CfgPerson](https://docs.genesys.com/Documentation/PSDK/latest/ConfigLayerRef/CfgPerson) objects based on the specified filters.
      * @param {Object} opts Optional parameters.
      * @param {Number} opts.limit Limit the number of users the Provisioning API should return.

@@ -18,7 +18,6 @@ adaptCometDClientForNode();
 class ProvisioningApi {
 	
 	/**
-	 * Constructor.
 	 * Create a new ProvisioningApi object.
 	 * @param {String} apiKey The API key used to access the Provisioning API.
 	 * @param {String} provisioningUrl The URL of the provisioning service.
@@ -106,7 +105,6 @@ class ProvisioningApi {
 		this._log(`CometD Message on channel: ${msg.channel} with data: ${msg.data}`);
   	}
 	/**
-	 * Initialize the API.
 	 * Initialize the API using either an authorization code and redirect URI or an access token. The authorization code comes from using the Authorization Code Grant flow to authenticate with the Authentication API.
 	 * @param opts Optional parameters.
 	 * @param opts.token The access token retrieved from the Authentication API.
@@ -147,7 +145,6 @@ class ProvisioningApi {
 	}
 	
 	/**
-	 * Set the logger function.
 	 * Customize logging by specifying the function the ProvisioningApi should use to log its activity. For example, on API calls or CometD notifications.
 	 * @param {Function} logger The custom logging function.
 	 */
@@ -156,7 +153,6 @@ class ProvisioningApi {
 	}
 	
 	/**
-	 * End the current session.
 	 * End the current HTTP session, cleans up related resources, and disconnect CometD. You should only use this after initializing.
 	 */
 	async done() {

@@ -9,7 +9,6 @@ class OptionsApi {
 	}
 	
 	/**
-     * Get options.
      * Get options for a specified application and merge them with the person and agent group annexes.
      * @param {Object} opts Optional parameters.
      * @param {String} opts.personDbid The DBID of a person. Options are merged with the person&#39;s annex and the annexes of the person&#39;s agent groups. Mutual with **agentGroupDbid**. 
@@ -23,7 +22,6 @@ class OptionsApi {
 	}
 	
 	/**
-     * Modify options.
      * Replace the existing application options with the specified new values.
      * @param {String} application The name of an application. This value is set to `CloudCluster` by default.
      * @param {Object} options The new options.
@@ -35,7 +33,6 @@ class OptionsApi {
 	}
 	
 	/**
-     * Update options.
      * Add, edit or delete option values for the specified application.
      * @param {String} application The name of an application. This value is set to `CloudCluster` by default.
      * @param {Object} newOptions The options to add in the application. 

@@ -9,7 +9,6 @@ class ObjectsApi {
 	}
 	
 	/**
-     * Get DNs.
      * Get DNs (directory numbers) from Configuration Server with the specified filters.
      * @param {Object} opts Optional parameters.
      * @param {String} opts.dnType The type of DN - for example, CFGRoutingPoint. For possible values, see [CfgDNType](https://docs.genesys.com/Documentation/PSDK/9.0.x/ConfigLayerRef/CfgDNType) in the Platform SDK documentation. 
@@ -32,7 +31,6 @@ class ObjectsApi {
 	}
 	
 	/**
-     * Get agent groups.
      * Get agent groups from Configuration Server with the specified filters.
      * @param {Object} opts Optional parameters.
      * @param {module:model/String} opts.groupType The agent group type.
@@ -53,7 +51,6 @@ class ObjectsApi {
 	}
 	
 	/**
-     * Get DN groups.
      * Get DN groups from Configuration Server with the specified filters.
      * @param {String} objectType The type of object. Possible values are `dns`, `skills`, `dn-groups` or `agent-groups`.
      * @param {Object} opts Optional parameters.
@@ -74,7 +71,6 @@ class ObjectsApi {
 	}
 	
 	/**
-     * Get skills.
      * Get skills from Configuration Server with the specified filters.
      * @param {Object} opts Optional parameters.
      * @param {Number} opts.limit The number of objects the Provisioning API should return.
