@@ -45,7 +45,7 @@ class OptionsApi {
      */
 	async update(application, newOptions, changedOptions,  deletedOptions) {
 		this._log(`Updating Options`);
-		return (await this._optionsApi.modifyOptions({data: {application: application, newOptions: newOptions, changedOptions: changedOptions, deletedOptions: deletedOptions}})).data;
+		return (await this._optionsApi.updateOptions({data: {application: application, newOptions: newOptions, changedOptions: changedOptions, deletedOptions: deletedOptions}})).data;
 	}
 	
 }
