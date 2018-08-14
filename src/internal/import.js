@@ -51,9 +51,9 @@ class ImportApi {
      * @param {File} opts.csvfile The CSV/XLS file to import.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
-	async validateFile() {
+	async validateFile(csvFile) {
 		this._log(`Validating Import File`);
-		return await this._importApi.validateImportFile();
+		return await this._importApi.validateImportFile(csvFile);
 	}
 	
 	
