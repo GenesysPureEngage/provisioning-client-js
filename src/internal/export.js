@@ -52,6 +52,7 @@ class ExportApi {
 	 */
 	async downloadExport(id) {
 		return new Promise((resolve, reject) => {
+			this._log(`Downloading Csv File`);
 			request({
 				headers: {
 					"x-api-key": this._apiKey,

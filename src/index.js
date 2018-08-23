@@ -103,7 +103,7 @@ class ProvisioningApi {
 		if(msg.channel == 'operations') {
 			this.operations._onAsyncResponse(msg.data.id, msg.data.data);
 		}
-		this._log(`CometD Message on channel: ${msg.channel} with data: ${msg.data}`);
+		this._log(`CometD Message on channel: ${msg.channel} with data: ${JSON.stringify(msg.data)}`);
   	}
 	/**
 	 * Initialize Provisioning.
@@ -141,7 +141,7 @@ class ProvisioningApi {
 		this.objects = new ObjectsApi(this._client, this._log.bind(this));
 		this.options = new OptionsApi(this._client, this._log.bind(this));
 		this.export = new ExportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
-		this.import = new ImportApi(this._client, this._log.bind(this));
+		this.import = new ImportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
 		this.system = new SystemApi(this._client, this._log.bind(this));
 		this.operations = new OperationsApi(this._client, this._log.bind(this));
 	}
