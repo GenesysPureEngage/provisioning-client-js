@@ -16,70 +16,62 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/CreateUserSuccessResponseStatus', 'model/GetOptionsResponseData'], factory);
+    define(['ApiClient', 'model/InboundData'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./CreateUserSuccessResponseStatus'), require('./GetOptionsResponseData'));
+    module.exports = factory(require('../ApiClient'), require('./InboundData'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetOptionsResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CreateUserSuccessResponseStatus, root.ProvisioningApi.GetOptionsResponseData);
+    root.ProvisioningApi.GetInboundResponseData = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.InboundData);
   }
-}(this, function(ApiClient, CreateUserSuccessResponseStatus, GetOptionsResponseData) {
+}(this, function(ApiClient, InboundData) {
   'use strict';
 
 
 
 
   /**
-   * The GetOptionsResponse model module.
-   * @module model/GetOptionsResponse
+   * The GetInboundResponseData model module.
+   * @module model/GetInboundResponseData
    * @version 9.0.000.26.2572
    */
 
   /**
-   * Constructs a new <code>GetOptionsResponse</code>.
-   * @alias module:model/GetOptionsResponse
+   * Constructs a new <code>GetInboundResponseData</code>.
+   * @alias module:model/GetInboundResponseData
    * @class
    */
   var exports = function() {
     var _this = this;
 
 
-
   };
 
   /**
-   * Constructs a <code>GetOptionsResponse</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>GetInboundResponseData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetOptionsResponse} obj Optional instance to populate.
-   * @return {module:model/GetOptionsResponse} The populated <code>GetOptionsResponse</code> instance.
+   * @param {module:model/GetInboundResponseData} obj Optional instance to populate.
+   * @return {module:model/GetInboundResponseData} The populated <code>GetInboundResponseData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('status')) {
-        obj['status'] = CreateUserSuccessResponseStatus.constructFromObject(data['status']);
-      }
-      if (data.hasOwnProperty('data')) {
-        obj['data'] = GetOptionsResponseData.constructFromObject(data['data']);
+      if (data.hasOwnProperty('settings')) {
+        obj['settings'] = ApiClient.convertToType(data['settings'], [InboundData]);
       }
     }
     return obj;
   }
 
   /**
-   * @member {module:model/CreateUserSuccessResponseStatus} status
+   * @member {Array.<module:model/InboundData>} settings
    */
-  exports.prototype['status'] = undefined;
-  /**
-   * @member {module:model/GetOptionsResponseData} data
-   */
-  exports.prototype['data'] = undefined;
+  exports.prototype['settings'] = undefined;
 
 
 

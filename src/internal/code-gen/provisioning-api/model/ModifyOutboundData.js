@@ -16,68 +16,61 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/CreateUserSuccessResponseStatus', 'model/GetOptionsResponseData'], factory);
+    define(['ApiClient', 'model/OutboundData'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./CreateUserSuccessResponseStatus'), require('./GetOptionsResponseData'));
+    module.exports = factory(require('../ApiClient'), require('./OutboundData'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetOptionsResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CreateUserSuccessResponseStatus, root.ProvisioningApi.GetOptionsResponseData);
+    root.ProvisioningApi.ModifyOutboundData = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.OutboundData);
   }
-}(this, function(ApiClient, CreateUserSuccessResponseStatus, GetOptionsResponseData) {
+}(this, function(ApiClient, OutboundData) {
   'use strict';
 
 
 
 
   /**
-   * The GetOptionsResponse model module.
-   * @module model/GetOptionsResponse
+   * The ModifyOutboundData model module.
+   * @module model/ModifyOutboundData
    * @version 9.0.000.26.2572
    */
 
   /**
-   * Constructs a new <code>GetOptionsResponse</code>.
-   * @alias module:model/GetOptionsResponse
+   * Constructs a new <code>ModifyOutboundData</code>.
+   * @alias module:model/ModifyOutboundData
    * @class
+   * @param data {module:model/OutboundData} 
    */
-  var exports = function() {
+  var exports = function(data) {
     var _this = this;
 
-
-
+    _this['data'] = data;
   };
 
   /**
-   * Constructs a <code>GetOptionsResponse</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>ModifyOutboundData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetOptionsResponse} obj Optional instance to populate.
-   * @return {module:model/GetOptionsResponse} The populated <code>GetOptionsResponse</code> instance.
+   * @param {module:model/ModifyOutboundData} obj Optional instance to populate.
+   * @return {module:model/ModifyOutboundData} The populated <code>ModifyOutboundData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('status')) {
-        obj['status'] = CreateUserSuccessResponseStatus.constructFromObject(data['status']);
-      }
       if (data.hasOwnProperty('data')) {
-        obj['data'] = GetOptionsResponseData.constructFromObject(data['data']);
+        obj['data'] = OutboundData.constructFromObject(data['data']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {module:model/CreateUserSuccessResponseStatus} status
-   */
-  exports.prototype['status'] = undefined;
-  /**
-   * @member {module:model/GetOptionsResponseData} data
+   * @member {module:model/OutboundData} data
    */
   exports.prototype['data'] = undefined;
 
