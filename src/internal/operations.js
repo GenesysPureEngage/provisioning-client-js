@@ -13,7 +13,7 @@ class OperationsApi {
 	
 	_onAsyncResponse(id, response) {
 		if(this._asyncCallbacks[id])
-			this._asyncCallbacks[id](response);
+			this._asyncCallbacks[id](JSON.parse(response.data)["data"]);
 	}
 	/**
 	 * Get users.

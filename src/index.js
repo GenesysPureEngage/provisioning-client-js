@@ -8,7 +8,6 @@ const ObjectsApi = require('./internal/objects.js');
 const OptionsApi = require('./internal/options.js');
 const ExportApi = require('./internal/export.js');
 const ImportApi = require('./internal/import.js');
-const SystemApi = require('./internal/system.js');
 const OperationsApi = require('./internal/operations.js');
 
 const Promise = require('promise');
@@ -142,7 +141,6 @@ class ProvisioningApi {
 		this.options = new OptionsApi(this._client, this._log.bind(this));
 		this.export = new ExportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
 		this.import = new ImportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
-		this.system = new SystemApi(this._client, this._log.bind(this));
 		this.operations = new OperationsApi(this._client, this._log.bind(this));
 	}
 	
