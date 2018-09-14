@@ -11,25 +11,27 @@ const ImportApi = require('./internal/import.js');
 const OperationsApi = require('./internal/operations.js');
 
 const Promise = require('promise');
+const EventEmitter = require('events');
 
 adaptCometDClientForNode();
 
-class ProvisioningApi {
+class ProvisioningApi extends EventEmitter {
 	
 	/**
 	 * Constructor
 	 * Constructs a new ProvisioningApi Object
 	 * @param {String} apiKey The API key used to access the provisioning api.
-	 * @param {String} provisioningUrl The URL of the provisioning service.
+	 * @param {String} baseUrl The URL of the provisioning service.
 	 * @param {Boolean} debugEnabled If set to true the ProvisioningApi will log it's activity with console.log.
 	 */
-	constructor(apiKey, provisioningUrl, debugEnabled) {
+	constructor(apiKey, baseUrl, debugEnabled) {
+        super();
 		this._apiKey = apiKey;
-		this._provisioningUrl = provisioningUrl;
+		this._provisioningUrl = `${baseUrl}/provisioning/v3`;
 		
 		
 		this._client = new provisioning.ApiClient();
-		this._client.basePath = provisioningUrl;
+		this._client.basePath = this._provisioningUrl;
 		this._client.enableCookies = true;
 		this._cookieJar = this._client.agent.jar;
 		
@@ -101,6 +103,7 @@ class ProvisioningApi {
   		msg = msg.data;
 		if(msg.channel == 'operations') {
 			this.operations._onAsyncResponse(msg.data.id, msg.data.data);
+            this.emit('OnAsyncResponse', msg);
 		}
 		this._log(`CometD Message on channel: ${msg.channel} with data: ${JSON.stringify(msg.data)}`);
   	}
@@ -129,8 +132,7 @@ class ProvisioningApi {
 		this._sessionCookie = resp.response.header['set-cookie'].find(v => v.startsWith('PROVISIONING_SESSIONID'));
 		this._cookieJar.setCookie(this._sessionCookie);
 		this._log('Provisioning SESSIONID is: ' + this._sessionCookie);
-		
-		
+
 		await this._initializeCometd();
 		
 		this._initialized = true;
@@ -157,7 +159,7 @@ class ProvisioningApi {
 	 * Logout and Disconnect CometD
 	 * Logout of your Provisioning session and disconnect CometD. Only use after initializing.
 	 */
-	async done() {
+	async destroy() {
 		if(this._initialized) {
 			this._log('Disconnecting CometD');
 			await new Promise((resolve, reject) => this._cometd.disconnect((reply) => {
