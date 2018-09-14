@@ -62,7 +62,7 @@ class ProvisioningApi extends EventEmitter {
 		
 		transport.context = { cookieJar: this._cookieJar };
 		this._cometd.configure({
-		  url: `${this._provisioningUrl}/notifications-cometd`,
+		  url: `${this._provisioningUrl}/notifications`,
 		  requestHeaders: {
 			'x-api-key': this._apiKey,
 		  }
