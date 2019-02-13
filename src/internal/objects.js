@@ -1,4 +1,3 @@
-
 const provisioning = require("./code-gen/provisioning-api");
 
 class ObjectsApi {

@@ -8,28 +8,29 @@ const ObjectsApi = require('./internal/objects.js');
 const OptionsApi = require('./internal/options.js');
 const ExportApi = require('./internal/export.js');
 const ImportApi = require('./internal/import.js');
-const SystemApi = require('./internal/system.js');
 const OperationsApi = require('./internal/operations.js');
 
 const Promise = require('promise');
+const EventEmitter = require('events');
 
 adaptCometDClientForNode();
 
-class ProvisioningApi {
+class ProvisioningApi extends EventEmitter {
 	
 	/**
 	 * Create a new ProvisioningApi object.
-	 * @param {String} apiKey The API key used to access the Provisioning API.
-	 * @param {String} provisioningUrl The URL of the provisioning service.
+	 * @param {String} apiKey The API key used to access the provisioning api.
+	 * @param {String} baseUrl The URL of the provisioning service.
 	 * @param {Boolean} debugEnabled If true, the ProvisioningApi object logs its activity with console.log.
 	 */
-	constructor(apiKey, provisioningUrl, debugEnabled) {
+	constructor(apiKey, baseUrl, debugEnabled) {
+        super();
 		this._apiKey = apiKey;
-		this._provisioningUrl = provisioningUrl;
+		this._provisioningUrl = `${baseUrl}/provisioning/v3`;
 		
 		
 		this._client = new provisioning.ApiClient();
-		this._client.basePath = provisioningUrl;
+		this._client.basePath = this._provisioningUrl;
 		this._client.enableCookies = true;
 		this._cookieJar = this._client.agent.jar;
 		
@@ -60,7 +61,7 @@ class ProvisioningApi {
 		
 		transport.context = { cookieJar: this._cookieJar };
 		this._cometd.configure({
-		  url: `${this._provisioningUrl}/notifications-cometd`,
+		  url: `${this._provisioningUrl}/notifications`,
 		  requestHeaders: {
 			'x-api-key': this._apiKey,
 		  }
@@ -99,10 +100,11 @@ class ProvisioningApi {
   	
   	_onCometdMessage(msg) {
   		msg = msg.data;
-		if(msg.channel == 'aio') {
+		if(msg.channel == 'operations') {
 			this.operations._onAsyncResponse(msg.data.id, msg.data.data);
+            this.emit('OnAsyncResponse', msg);
 		}
-		this._log(`CometD Message on channel: ${msg.channel} with data: ${msg.data}`);
+		this._log(`CometD Message on channel: ${msg.channel} with data: ${JSON.stringify(msg.data)}`);
   	}
 	/**
 	 * Initialize the API using either an authorization code and redirect URI or an access token. The authorization code comes from using the Authorization Code Grant flow to authenticate with the Authentication API.
@@ -128,8 +130,7 @@ class ProvisioningApi {
 		this._sessionCookie = resp.response.header['set-cookie'].find(v => v.startsWith('PROVISIONING_SESSIONID'));
 		this._cookieJar.setCookie(this._sessionCookie);
 		this._log('Provisioning SESSIONID is: ' + this._sessionCookie);
-		
-		
+
 		await this._initializeCometd();
 		
 		this._initialized = true;
@@ -139,8 +140,7 @@ class ProvisioningApi {
 		this.objects = new ObjectsApi(this._client, this._log.bind(this));
 		this.options = new OptionsApi(this._client, this._log.bind(this));
 		this.export = new ExportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
-		this.import = new ImportApi(this._client, this._log.bind(this));
-		this.system = new SystemApi(this._client, this._log.bind(this));
+		this.import = new ImportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
 		this.operations = new OperationsApi(this._client, this._log.bind(this));
 	}
 	
@@ -155,7 +155,7 @@ class ProvisioningApi {
 	/**
 	 * End the current HTTP session, cleans up related resources, and disconnect CometD. You should only use this after initializing.
 	 */
-	async done() {
+	async destroy() {
 		if(this._initialized) {
 			this._log('Disconnecting CometD');
 			await new Promise((resolve, reject) => this._cometd.disconnect((reply) => {
