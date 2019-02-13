@@ -18,11 +18,10 @@ adaptCometDClientForNode();
 class ProvisioningApi extends EventEmitter {
 	
 	/**
-	 * Constructor
-	 * Constructs a new ProvisioningApi Object
+	 * Create a new ProvisioningApi object.
 	 * @param {String} apiKey The API key used to access the provisioning api.
 	 * @param {String} baseUrl The URL of the provisioning service.
-	 * @param {Boolean} debugEnabled If set to true the ProvisioningApi will log it's activity with console.log.
+	 * @param {Boolean} debugEnabled If true, the ProvisioningApi object logs its activity with console.log.
 	 */
 	constructor(apiKey, baseUrl, debugEnabled) {
         super();
@@ -108,12 +107,11 @@ class ProvisioningApi extends EventEmitter {
 		this._log(`CometD Message on channel: ${msg.channel} with data: ${JSON.stringify(msg.data)}`);
   	}
 	/**
-	 * Initialize Provisioning.
-	 * Initialize provisioning with either an authorization token or and authorization code.
+	 * Initialize the API using either an authorization code and redirect URI or an access token. The authorization code comes from using the Authorization Code Grant flow to authenticate with the Authentication API.
 	 * @param opts Optional parameters.
-	 * @param opts.token Token retrieved from authorization service when using resource owner grant.
-	 * @param opts.code Code retrieved from authorization service when using code grant.
-	 * @param opts.redirectUri The initial redirect URI used in oauth when using code grant.
+	 * @param opts.token The access token retrieved from the Authentication API.
+	 * @param opts.code The authorization code you received during authentication.
+	 * @param opts.redirectUri The redirect URI you used during authentication. This needs to match the `redirectUri` that you sent when using the Authentication API to get the authorization code.
 	 */
 	async initialize({token, code, redirectUri}) {
 		
@@ -147,8 +145,7 @@ class ProvisioningApi extends EventEmitter {
 	}
 	
 	/**
-	 * Set Logger function.
-	 * Customize the logging of messages by setting the logger function that the ProvisioningApi will use to log it's activity (eg. on API calls or CometD notifications).
+	 * Customize logging by specifying the function the ProvisioningApi should use to log its activity. For example, on API calls or CometD notifications.
 	 * @param {Function} logger The custom logging function.
 	 */
 	setLogger(logger) {
@@ -156,8 +153,7 @@ class ProvisioningApi extends EventEmitter {
 	}
 	
 	/**
-	 * Logout and Disconnect CometD
-	 * Logout of your Provisioning session and disconnect CometD. Only use after initializing.
+	 * End the current HTTP session, cleans up related resources, and disconnect CometD. You should only use this after initializing.
 	 */
 	async destroy() {
 		if(this._initialized) {
