@@ -14,6 +14,7 @@ class ImportApi {
 	}
 	
 	/**
+     * Import users.
      * Import users in the specified CSV/XLS file.
      * @param {String} fileName The file name of the CSV/XLS file to import.
      * @param {String} fileContents The contents of the CSV/XLS file to import. Can be either String or Buffer for streaming file upload.
@@ -51,6 +52,7 @@ class ImportApi {
 	}
 	
 	/**
+     * Get import status.
      * Get all active imports for the specified tenant.
      * @param {String} adminName The login name of an administrator for the tenant.
      * @param {String} tenantName The name of the tenant.
@@ -62,7 +64,8 @@ class ImportApi {
 	}
 	
 	/**
-     * Terminate the current user import operation.
+     * Stop import.
+     * Terminates the current user import operation.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
 	async terminate() {
@@ -71,9 +74,10 @@ class ImportApi {
 	}
 	
 	/**
-     * Perform pre-validation on the specified CSV/XLS file.
-     * @param {Object} opts Optional parameters.
-     * @param {File} opts.csvfile The CSV/XLS file to import.
+     * Validate the import file.
+     * Performs pre-validation on the specified CSV/XLS file.
+     * @param {String} fileName The file name of the CSV/XLS file to validate.
+     * @param {String} fileContents The contents of the CSV/XLS file to validate. Can be either String or Buffer for streaming file upload.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
 	validateFile(fileName, fileContents) {
