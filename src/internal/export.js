@@ -13,9 +13,8 @@ class ExportApi {
 	}
 	
 	/**
-     * Export users.
-     * Export the specified users with the properties you list in the **fields** parameter.
-     * @param {Object} exportFileData Export File Data containing the list of fields, the fileName, personDBIDs to be exported and filterParameters.
+     * Export the specified users with the properties you list in the **exportFileData** parameter.
+     * @param {Object} exportFileData Export File Data containing the list of **fields**, the **fileName**, **personDBIDs** to be exported and **filterParameters**.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with the export ID.
      */
 	async exportFile(exportFileData) {
@@ -24,7 +23,6 @@ class ExportApi {
 	}
 	
 	/**
-     * Get export status.
      * Check the status of the specified export and return the percentage complete.
      * @param {Number} id The ID of a previously started export.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with the export status.
@@ -35,8 +33,7 @@ class ExportApi {
 	}
 	
 	/**
-	 * Get Download URL.
-	 * Get the URL that can be used to download the export.
+	 * Get the URL you can use to download the export.
 	 * @param {Number} id The ID if the export.
 	 * @return {String} the download URL.
 	 */
@@ -45,7 +42,6 @@ class ExportApi {
 	}
 	
 	/**
-	 * Download Exported CSV File.
 	 * Download the exported CSV file and return its contents as a String.
 	 * @param {Number} id The ID if the export.
 	 * @return {Promise} a {@link https://www.promisejs.org/|Promise}, containing the contents of the exported file.
