@@ -1,49 +1,52 @@
 const provisioning = require("./code-gen/provisioning-api");
 
 class OptionsApi {
-	
-	constructor(client, log) {
-		this._optionsApi = new provisioning.OptionsApi(client);
-		this._log = log;
-	}
-	
-	/**
-     * Get options for a specified application and merge them with the person and agent group annexes.
+
+    constructor(client, log) {
+        this._optionsApi = new provisioning.OptionsApi(client);
+        this._log = log;
+    }
+
+    /**
+     * Get CloudCluster/Options and merges it with person and agent groups annexes..
      * @param {Object} opts Optional parameters.
-     * @param {String} opts.personDbid The DBID of a person. Options are merged with the person&#39;s annex and the annexes of the person&#39;s agent groups. Mutual with **agentGroupDbid**. 
+     * @param {String} opts.personDbid The DBID of a person. Options are merged with the person&#39;s annex and the annexes of the person&#39;s agent groups. Mutual with **agentGroupDbid**.
      * @param {String} opts.agentGroupDbid The DBID of an agent group. Options are merged with the agent group&#39;s annex. Mutual with **personDbid**.
-     * @param {String} opts.application The name of an application. This value is set to CloudCluster by default.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise} containing the options.
      */
-	async get(opts) {
-		this._log(`Getting Options`);
-		return (await this._optionsApi.getOptions(opts)).data;
-	}
-	
-	/**
-     * Replace the existing application options with the specified new values.
-     * @param {String} application The name of an application. This value is set to `CloudCluster` by default.
+    async get(opts) {
+        this._log(`Getting Options`);
+        return (await this._optionsApi.getOptions(opts)).data;
+    }
+
+    /**
+     * Replace the existing options with the specified new values in CloudCluster/Options.
      * @param {Object} options The new options.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
-	async modify(application, options) {
-		this._log(`Modifying Options`);
-		return (await this._optionsApi.modifyOptions({data: {application: application, options: options}})).data;
-	}
-	
-	/**
-     * Add, edit or delete option values for the specified application.
-     * @param {String} application The name of an application. This value is set to `CloudCluster` by default.
-     * @param {Object} newOptions The options to add in the application. 
-     * @param {Object} changedOptions The option values to update in the application. 
-     * @param {Object} deletedOptions The options to delete in the application. 
+    async modify(options) {
+        this._log(`Modifying Options in CloudCluster application`);
+        return (await this._optionsApi.modifyOptions({data: {options: options}}));
+    }
+
+    /**
+     * Add, edit or delete option values in CloudCluster/Options.
+     * @param {Object} newOptions The options to add in the application.
+     * @param {Object} changedOptions The option values to update in the application.
+     * @param {Object} deletedOptions The options to delete in the application.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}.
      */
-	async update(application, newOptions, changedOptions,  deletedOptions) {
-		this._log(`Updating Options`);
-		return (await this._optionsApi.updateOptions({data: {application: application, newOptions: newOptions, changedOptions: changedOptions, deletedOptions: deletedOptions}})).data;
-	}
-	
+    async update(newOptions, changedOptions, deletedOptions) {
+        this._log(`Updating Options in CloudCluster application`);
+        return (await this._optionsApi.updateOptions({
+            data: {
+                newOptions: newOptions,
+                changedOptions: changedOptions,
+                deletedOptions: deletedOptions
+            }
+        }));
+    }
+
 }
 
 module.exports = OptionsApi;
