@@ -16,7 +16,7 @@ class OptionsApi {
      */
     async get(opts) {
         this._log(`Getting Options`);
-        return (await this._optionsApi.getOptions(opts)).data;
+        return (await this._optionsApi.optionsGet(opts)).data;
     }
 
     /**
@@ -26,7 +26,7 @@ class OptionsApi {
      */
     async modify(options) {
         this._log(`Modifying Options in CloudCluster application`);
-        return (await this._optionsApi.modifyOptions({data: {options: options}}));
+        return (await this._optionsApi.optionsPost({data: {options: options}}));
     }
 
     /**
@@ -38,7 +38,7 @@ class OptionsApi {
      */
     async update(newOptions, changedOptions, deletedOptions) {
         this._log(`Updating Options in CloudCluster application`);
-        return (await this._optionsApi.updateOptions({
+        return (await this._optionsApi.optionsPut({
             data: {
                 newOptions: newOptions,
                 changedOptions: changedOptions,
