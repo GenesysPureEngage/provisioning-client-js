@@ -139,8 +139,8 @@ class ProvisioningApi extends EventEmitter {
         this.users = new UsersApi(this._client, this._log.bind(this));
         this.objects = new ObjectsApi(this._client, this._log.bind(this));
         this.options = new OptionsApi(this._client, this._log.bind(this));
-        this.export = new ExportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
-        this.import = new ImportApi(this._client, this._log.bind(this), this.apiKey, this._sessionCookie);
+        this.export = new ExportApi(this._client, this._log.bind(this), this._apiKey, this._sessionCookie);
+        this.import = new ImportApi(this._client, this._log.bind(this), this._apiKey, this._sessionCookie);
         this.operations = new OperationsApi(this._client, this._log.bind(this));
     }
 
