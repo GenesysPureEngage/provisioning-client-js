@@ -16,32 +16,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/CapRulesDeleteResponseStatusSuccess'], factory);
+    define(['ApiClient', 'model/GetConfigResponseStatus'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./CapRulesDeleteResponseStatusSuccess'));
+    module.exports = factory(require('../ApiClient'), require('./GetConfigResponseStatus'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.CapRulesDeleteResponseSuccess = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CapRulesDeleteResponseStatusSuccess);
+    root.ProvisioningApi.ValidateMultiIDPResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.GetConfigResponseStatus);
   }
-}(this, function(ApiClient, CapRulesDeleteResponseStatusSuccess) {
+}(this, function(ApiClient, GetConfigResponseStatus) {
   'use strict';
 
 
 
 
   /**
-   * The CapRulesDeleteResponseSuccess model module.
-   * @module model/CapRulesDeleteResponseSuccess
+   * The ValidateMultiIDPResponse model module.
+   * @module model/ValidateMultiIDPResponse
    * @version 9.0.000.54.3393
    */
 
   /**
-   * Constructs a new <code>CapRulesDeleteResponseSuccess</code>.
-   * @alias module:model/CapRulesDeleteResponseSuccess
+   * Constructs a new <code>ValidateMultiIDPResponse</code>.
+   * @alias module:model/ValidateMultiIDPResponse
    * @class
    */
   var exports = function() {
@@ -51,25 +51,25 @@
   };
 
   /**
-   * Constructs a <code>CapRulesDeleteResponseSuccess</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>ValidateMultiIDPResponse</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/CapRulesDeleteResponseSuccess} obj Optional instance to populate.
-   * @return {module:model/CapRulesDeleteResponseSuccess} The populated <code>CapRulesDeleteResponseSuccess</code> instance.
+   * @param {module:model/ValidateMultiIDPResponse} obj Optional instance to populate.
+   * @return {module:model/ValidateMultiIDPResponse} The populated <code>ValidateMultiIDPResponse</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
       if (data.hasOwnProperty('status')) {
-        obj['status'] = CapRulesDeleteResponseStatusSuccess.constructFromObject(data['status']);
+        obj['status'] = GetConfigResponseStatus.constructFromObject(data['status']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {module:model/CapRulesDeleteResponseStatusSuccess} status
+   * @member {module:model/GetConfigResponseStatus} status
    */
   exports.prototype['status'] = undefined;
 
