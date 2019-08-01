@@ -89,8 +89,10 @@ class ProvisioningApi extends EventEmitter {
                         ? 'successful'
                         : 'failed';
                     this._log(`${'/*'} subscription ${status}.`);
-                    if (result.successful) resolve()
-                    else reject(result)
+                    if (result.successful)
+                        resolve();
+                    else
+                        reject(result);
                 }
             );
         });
@@ -99,7 +101,7 @@ class ProvisioningApi extends EventEmitter {
 
     _onCometdMessage(msg) {
         msg = msg.data;
-        if (msg.channel == 'operations') {
+        if (msg.channel === 'operations') {
             this.operations._onAsyncResponse(msg.data.id, msg.data.data);
             this.emit('OnAsyncResponse', msg);
         }
@@ -149,7 +151,7 @@ class ProvisioningApi extends EventEmitter {
      * @param {Function} logger The custom logging function.
      */
     setLogger(logger) {
-        if (typeof logger == "function") this._loggerFunction = logger;
+        if (typeof logger === "function") this._loggerFunction = logger;
     }
 
     /**
@@ -158,10 +160,7 @@ class ProvisioningApi extends EventEmitter {
     async destroy() {
         if (this._initialized) {
             this._log('Disconnecting CometD');
-            await new Promise((resolve, reject) => this._cometd.disconnect((reply) => {
-                if (reply.successful) resolve();
-                else reject(reply);
-            }));
+            this._cometd.disconnect();
             this._log('Logging Out');
             await this._sessionApi.logout();
         }

@@ -16,68 +16,60 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/CapRulesGetResponseStatusSuccess', 'model/CapRulesGetResponseSuccessData'], factory);
+    define(['ApiClient', 'model/CheckMigrateConflictsStatus'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./CapRulesGetResponseStatusSuccess'), require('./CapRulesGetResponseSuccessData'));
+    module.exports = factory(require('../ApiClient'), require('./CheckMigrateConflictsStatus'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.CapRulesGetResponseSuccess = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CapRulesGetResponseStatusSuccess, root.ProvisioningApi.CapRulesGetResponseSuccessData);
+    root.ProvisioningApi.PostUpdateResetTimesStatistics = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CheckMigrateConflictsStatus);
   }
-}(this, function(ApiClient, CapRulesGetResponseStatusSuccess, CapRulesGetResponseSuccessData) {
+}(this, function(ApiClient, CheckMigrateConflictsStatus) {
   'use strict';
 
 
 
 
   /**
-   * The CapRulesGetResponseSuccess model module.
-   * @module model/CapRulesGetResponseSuccess
+   * The PostUpdateResetTimesStatistics model module.
+   * @module model/PostUpdateResetTimesStatistics
    * @version 9.0.000.57.3612
    */
 
   /**
-   * Constructs a new <code>CapRulesGetResponseSuccess</code>.
-   * @alias module:model/CapRulesGetResponseSuccess
+   * Constructs a new <code>PostUpdateResetTimesStatistics</code>.
+   * @alias module:model/PostUpdateResetTimesStatistics
    * @class
    */
   var exports = function() {
     var _this = this;
 
 
-
   };
 
   /**
-   * Constructs a <code>CapRulesGetResponseSuccess</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>PostUpdateResetTimesStatistics</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/CapRulesGetResponseSuccess} obj Optional instance to populate.
-   * @return {module:model/CapRulesGetResponseSuccess} The populated <code>CapRulesGetResponseSuccess</code> instance.
+   * @param {module:model/PostUpdateResetTimesStatistics} obj Optional instance to populate.
+   * @return {module:model/PostUpdateResetTimesStatistics} The populated <code>PostUpdateResetTimesStatistics</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('data')) {
-        obj['data'] = CapRulesGetResponseSuccessData.constructFromObject(data['data']);
-      }
       if (data.hasOwnProperty('status')) {
-        obj['status'] = CapRulesGetResponseStatusSuccess.constructFromObject(data['status']);
+        obj['status'] = CheckMigrateConflictsStatus.constructFromObject(data['status']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {module:model/CapRulesGetResponseSuccessData} data
-   */
-  exports.prototype['data'] = undefined;
-  /**
-   * @member {module:model/CapRulesGetResponseStatusSuccess} status
+   * @member {module:model/CheckMigrateConflictsStatus} status
    */
   exports.prototype['status'] = undefined;
 

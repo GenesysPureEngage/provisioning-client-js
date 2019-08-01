@@ -32,7 +32,7 @@ class ObjectsApi {
     /**
      * Get agent groups from Configuration Server with the specified filters.
      * @param {Object} opts Optional parameters.
-     * @param {module:model/String} opts.groupType The agent group type.
+     * @param {String} opts.groupType The agent group type.
      * @param {Number} opts.limit The number of objects the Provisioning API should return.
      * @param {Number} opts.offset The number of matches the Provisioning API should skip in the returned objects.
      * @param {String} opts.searchTerm The term that you want to search for in the object keys. The Provisioning API searches for the this term in the value of the key you specify in **searchKey**.
@@ -51,7 +51,6 @@ class ObjectsApi {
 
     /**
      * Get DN groups from Configuration Server with the specified filters.
-     * @param {String} objectType The type of object. Possible values are `dns`, `skills`, `dn-groups` or `agent-groups`.
      * @param {Object} opts Optional parameters.
      * @param {Number} opts.limit The number of objects the Provisioning API should return.
      * @param {Number} opts.offset The number of matches the Provisioning API should skip in the returned objects.
