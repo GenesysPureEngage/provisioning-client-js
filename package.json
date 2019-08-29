@@ -21,14 +21,14 @@
     "url": "git://github.com/GenesysPureEngage/provisioning-client-js.git"
   },
   "dependencies": {
-    "superagent": "3.7.0",
     "cometd": "4.0.4",
     "cookiejar": "^2.1.2",
     "events": "^1.1.1",
     "promise": "^8.0.1",
     "request": "^2.88.0",
+    "superagent": "3.7.0",
     "url": "^0.11.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "expect.js": "~0.3.1",
