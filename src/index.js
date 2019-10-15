@@ -13,6 +13,9 @@ const OperationsApi = require('./internal/operations.js');
 const Promise = require('promise');
 const EventEmitter = require('events');
 
+const HttpsProxyAgent = require('https-proxy-agent');
+const HttpProxyAgent = require('http-proxy-agent');
+
 class ProvisioningApi extends EventEmitter {
 
     /**
@@ -30,6 +33,7 @@ class ProvisioningApi extends EventEmitter {
         this._client = new provisioning.ApiClient();
         this._client.basePath = this._provisioningUrl;
         this._client.enableCookies = true;
+
         this._cookieJar = this._client.agent.jar;
 
         if (apiKey) {
@@ -38,7 +42,7 @@ class ProvisioningApi extends EventEmitter {
 
         this._sessionApi = new provisioning.SessionApi(this._client);
 
-        if (debugEnabled) {
+        if ((String(debugEnabled) === 'true')) {
             this._loggerFunction = (msg) => {
                 console.log(msg);
             };
@@ -53,12 +57,23 @@ class ProvisioningApi extends EventEmitter {
         this._loggerFunction(msg);
     }
 
-    async _initializeCometd() {
+    async _initializeCometd({proxy}) {
         this._log('Initializing cometd...');
+
         this._cometd = new CometDLib.CometD();
         const transport = this._cometd.findTransport('long-polling');
 
         transport.context = {cookieJar: this._cookieJar};
+
+        // Add proxy agent for proxy support
+        if (proxy) {
+            if (/^https/i.test(this._provisioningUrl)) {
+                transport.context['agent'] = new HttpsProxyAgent(proxy);
+            } else {
+                transport.context['agent'] = new HttpProxyAgent(proxy);
+            }
+        }
+
         this._cometd.configure({
             url: `${this._provisioningUrl}/notifications`,
             requestHeaders: {
@@ -115,9 +130,14 @@ class ProvisioningApi extends EventEmitter {
      * @param opts.code The authorization code you received during authentication.
      * @param opts.redirectUri The redirect URI you used during authentication. This needs to match the `redirectUri` that you sent when using the Authentication API to get the authorization code.
      */
-    async initialize({token, code, redirectUri}) {
+    async initialize({token, code, redirectUri, proxy}) {
 
         let options = {};
+
+        // Set proxy if defined
+        if (proxy) {
+            this._client.proxy = proxy;
+        }
 
         if (code) {
             options.code = authCode;
@@ -130,10 +150,18 @@ class ProvisioningApi extends EventEmitter {
         let resp = await this._sessionApi.initializeProvisioningWithHttpInfo(options);
 
         this._sessionCookie = resp.response.header['set-cookie'].find(v => v.startsWith('PROVISIONING_SESSIONID'));
+
+        // Patch "Secure" cookie flag
+        if (this._sessionCookie) {
+            if (this._sessionCookie.indexOf('Secure') !== -1) {
+                this._sessionCookie = this._sessionCookie.replace('Secure', '');
+            }
+        }
+
         this._cookieJar.setCookie(this._sessionCookie);
         this._log('Provisioning SESSIONID is: ' + this._sessionCookie);
 
-        await this._initializeCometd();
+        await this._initializeCometd({proxy: proxy});
 
         this._initialized = true;
         this._log("Initialization Complete");

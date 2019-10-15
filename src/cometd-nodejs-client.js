@@ -69,6 +69,12 @@ module.exports = {
                     _config.headers['Cookie'] = cookies;
                 }
 
+                // Proxy support (if configured)
+                if (this.context && this.context.agent) {
+                    _config.agent = this.context.agent;
+
+                }
+
                 // Set Content-Length header
                 _config.headers['Content-Length'] =  data ? Buffer.byteLength(data) : 0;
 
