@@ -2,6 +2,11 @@ const provisioning = require("./code-gen/provisioning-api");
 
 class ObjectsApi {
 
+    /**
+     * Objects API. Initialized internally by {@link ProvisioningApi}. Call {@link ProvisioningApi.objects} to access this API.
+     * @param {Object} client ProvisioningAPI client object.
+     * @param {Object} log Default logger.
+     */
     constructor(client, log) {
         this._objectsApi = new provisioning.ObjectsApi(client);
         this._log = log;

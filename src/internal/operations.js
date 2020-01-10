@@ -4,6 +4,11 @@ const uuid = require('uuid');
 
 class OperationsApi {
 
+    /**
+     * Async operations  API. Initialized internally by {@link ProvisioningApi}. Call {@link ProvisioningApi.operations} to access this API.
+     * @param {Object} client ProvisioningAPI client object.
+     * @param {Object} log Default logger.
+     */
     constructor(client, log) {
         this._operationsApi = new provisioning.OperationsApi(client);
         this._log = log;

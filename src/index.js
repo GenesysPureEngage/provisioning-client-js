@@ -123,6 +123,21 @@ class ProvisioningApi extends EventEmitter {
         this._log(`CometD Message on channel: ${msg.channel} with data: ${JSON.stringify(msg.data)}`);
     }
 
+    _patchSecureCookieFlag(sessionCookie) {
+        // Patch "Secure" cookie flag
+        if (sessionCookie && sessionCookie.toLowerCase().indexOf('secure') !== -1) {
+            let cookieFlags = sessionCookie.split(';');
+            cookieFlags.forEach((flag, flagIndex) => {
+                if (flag.toLowerCase().indexOf('secure') !== -1) {
+                    cookieFlags[flagIndex] = '';
+                }
+            });
+            sessionCookie = cookieFlags.filter(Boolean).join(';');
+        }
+
+        this._cookieJar.setCookie(sessionCookie);
+    }
+
     /**
      * Initialize the API using either an authorization code and redirect URI or an access token. The authorization code comes from using the Authorization Code Grant flow to authenticate with the Authentication API.
      * @param opts Optional parameters.
@@ -150,15 +165,7 @@ class ProvisioningApi extends EventEmitter {
         let resp = await this._sessionApi.initializeProvisioningWithHttpInfo(options);
 
         this._sessionCookie = resp.response.header['set-cookie'].find(v => v.startsWith('PROVISIONING_SESSIONID'));
-
-        // Patch "Secure" cookie flag
-        if (this._sessionCookie) {
-            if (this._sessionCookie.indexOf('Secure') !== -1) {
-                this._sessionCookie = this._sessionCookie.replace('Secure', '');
-            }
-        }
-
-        this._cookieJar.setCookie(this._sessionCookie);
+        this._patchSecureCookieFlag(this._sessionCookie);
         this._log('Provisioning SESSIONID is: ' + this._sessionCookie);
 
         await this._initializeCometd({proxy: proxy});

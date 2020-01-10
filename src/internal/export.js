@@ -3,7 +3,13 @@ const request = require('request');
 const Promise = require('promise');
 
 class ExportApi {
-
+    /**
+     * Export data API. Initialized internally by {@link ProvisioningApi}. Call {@link ProvisioningApi.export} to access this API.
+     * @param {Object} client ProvisioningAPI client object.
+     * @param {Object} log Default logger.
+     * @param {String} apiKey API Key assigned to client.
+     * @param {Object} sessionId Session identifier.
+     */
     constructor(client, log, apiKey, sessionId) {
         this._exportApi = new provisioning.ExportApi(client);
         this._log = log;
