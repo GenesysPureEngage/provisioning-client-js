@@ -16,32 +16,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/CheckMigrateConflictsStatus'], factory);
+    define(['ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./CheckMigrateConflictsStatus'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.PutUsers = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.CheckMigrateConflictsStatus);
+    root.ProvisioningApi.WhitelistStatusBodyDataData = factory(root.ProvisioningApi.ApiClient);
   }
-}(this, function(ApiClient, CheckMigrateConflictsStatus) {
+}(this, function(ApiClient) {
   'use strict';
 
 
 
 
   /**
-   * The PutUsers model module.
-   * @module model/PutUsers
+   * The WhitelistStatusBodyDataData model module.
+   * @module model/WhitelistStatusBodyDataData
    * @version 9.0.000.78.4173
    */
 
   /**
-   * Constructs a new <code>PutUsers</code>.
-   * @alias module:model/PutUsers
+   * Constructs a new <code>WhitelistStatusBodyDataData</code>.
+   * @alias module:model/WhitelistStatusBodyDataData
    * @class
    */
   var exports = function() {
@@ -51,27 +51,28 @@
   };
 
   /**
-   * Constructs a <code>PutUsers</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>WhitelistStatusBodyDataData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/PutUsers} obj Optional instance to populate.
-   * @return {module:model/PutUsers} The populated <code>PutUsers</code> instance.
+   * @param {module:model/WhitelistStatusBodyDataData} obj Optional instance to populate.
+   * @return {module:model/WhitelistStatusBodyDataData} The populated <code>WhitelistStatusBodyDataData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('status')) {
-        obj['status'] = CheckMigrateConflictsStatus.constructFromObject(data['status']);
+      if (data.hasOwnProperty('whitelistStatus')) {
+        obj['whitelistStatus'] = ApiClient.convertToType(data['whitelistStatus'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * @member {module:model/CheckMigrateConflictsStatus} status
+   * Value of status to set.
+   * @member {String} whitelistStatus
    */
-  exports.prototype['status'] = undefined;
+  exports.prototype['whitelistStatus'] = undefined;
 
 
 

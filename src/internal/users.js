@@ -3,13 +3,14 @@ const provisioning = require("./code-gen/provisioning-api");
 class UsersApi {
 
     /**
+     * This API is deprecated, should be updated to use objects API instead
      * Users  API. Initialized internally by {@link ProvisioningApi}. Call {@link ProvisioningApi.users} to access this API.
      * @param {Object} client ProvisioningAPI client object.
      * @param {Object} log Default logger.
      */
 
     constructor(client, log) {
-        this._usersApi = new provisioning.UsersApi(client);
+        this._usersApi = new provisioning.UsersDeprecatedApi(client);
         this._log = log;
     }
 
