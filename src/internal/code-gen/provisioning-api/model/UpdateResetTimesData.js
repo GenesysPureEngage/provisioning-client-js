@@ -16,70 +16,74 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/GetLocationResponseData', 'model/GetLocationResponseStatus'], factory);
+    define(['ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./GetLocationResponseData'), require('./GetLocationResponseStatus'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.ProvisioningApi) {
       root.ProvisioningApi = {};
     }
-    root.ProvisioningApi.GetLocationResponse = factory(root.ProvisioningApi.ApiClient, root.ProvisioningApi.GetLocationResponseData, root.ProvisioningApi.GetLocationResponseStatus);
+    root.ProvisioningApi.UpdateResetTimesData = factory(root.ProvisioningApi.ApiClient);
   }
-}(this, function(ApiClient, GetLocationResponseData, GetLocationResponseStatus) {
+}(this, function(ApiClient) {
   'use strict';
 
 
 
 
   /**
-   * The GetLocationResponse model module.
-   * @module model/GetLocationResponse
+   * The UpdateResetTimesData model module.
+   * @module model/UpdateResetTimesData
    * @version 9.0.000.85.4562
    */
 
   /**
-   * Constructs a new <code>GetLocationResponse</code>.
-   * @alias module:model/GetLocationResponse
+   * Constructs a new <code>UpdateResetTimesData</code>.
+   * @alias module:model/UpdateResetTimesData
    * @class
+   * @param resetTime {String} Set to dynamicTimeProfile of matching stat
+   * @param location {String} The normalized location
    */
-  var exports = function() {
+  var exports = function(resetTime, location) {
     var _this = this;
 
-
-
+    _this['resetTime'] = resetTime;
+    _this['location'] = location;
   };
 
   /**
-   * Constructs a <code>GetLocationResponse</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>UpdateResetTimesData</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/GetLocationResponse} obj Optional instance to populate.
-   * @return {module:model/GetLocationResponse} The populated <code>GetLocationResponse</code> instance.
+   * @param {module:model/UpdateResetTimesData} obj Optional instance to populate.
+   * @return {module:model/UpdateResetTimesData} The populated <code>UpdateResetTimesData</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('status')) {
-        obj['status'] = GetLocationResponseStatus.constructFromObject(data['status']);
+      if (data.hasOwnProperty('resetTime')) {
+        obj['resetTime'] = ApiClient.convertToType(data['resetTime'], 'String');
       }
-      if (data.hasOwnProperty('data')) {
-        obj['data'] = GetLocationResponseData.constructFromObject(data['data']);
+      if (data.hasOwnProperty('location')) {
+        obj['location'] = ApiClient.convertToType(data['location'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * @member {module:model/GetLocationResponseStatus} status
+   * Set to dynamicTimeProfile of matching stat
+   * @member {String} resetTime
    */
-  exports.prototype['status'] = undefined;
+  exports.prototype['resetTime'] = undefined;
   /**
-   * @member {module:model/GetLocationResponseData} data
+   * The normalized location
+   * @member {String} location
    */
-  exports.prototype['data'] = undefined;
+  exports.prototype['location'] = undefined;
 
 
 
