@@ -1,6 +1,6 @@
 {
   "name": "genesys-provisioning-client-js",
-  "version": "9.0.77",
+  "version": "9.0.79",
   "description": "Provisioning API used to create objects in configuration server in a way that is consistent with the BEC model",
   "license": "MIT",
   "main": "src/index.js",
@@ -28,14 +28,14 @@
     "https-proxy-agent": "^2.2.4",
     "promise": "^8.1.0",
     "request": "^2.88.2",
-    "superagent": "^5.2.2",
+    "superagent": "^5.3.1",
     "superagent-proxy": "^2.0.0",
     "url": "^0.11.0",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
     "expect.js": "~0.3.1",
-    "mocha": "^6.2.2",
+    "mocha": "^6.2.3",
     "sinon": "1.17.3"
   },
   "engines": {
