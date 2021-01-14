@@ -36,25 +36,20 @@ class ProvisioningApi extends EventEmitter {
 
         this._cookieJar = this._client.agent.jar;
 
+        this._debugEnabled = (String(debugEnabled) === 'true');
+        this._initialized = false;
+
         if (apiKey) {
             this._client.defaultHeaders = {'x-api-key': apiKey};
         }
 
         this._sessionApi = new provisioning.SessionApi(this._client);
-
-        if ((String(debugEnabled) === 'true')) {
-            this._loggerFunction = (msg) => {
-                console.log(msg);
-            };
-        } else {
-            this._loggerFunction = (msg) => {
-            }
-        }
-
     }
 
     _log(msg) {
-        this._loggerFunction(msg);
+        if (this._debugEnabled) {
+            console.log(msg);
+        }
     }
 
     async _initializeCometd({proxy}) {
@@ -170,8 +165,6 @@ class ProvisioningApi extends EventEmitter {
 
         await this._initializeCometd({proxy: proxy});
 
-        this._initialized = true;
-        this._log("Initialization Complete");
 
         this.users = new UsersApi(this._client, this._log.bind(this));
         this.objects = new ObjectsApi(this._client, this._log.bind(this));
@@ -179,6 +172,10 @@ class ProvisioningApi extends EventEmitter {
         this.export = new ExportApi(this._client, this._log.bind(this), this._apiKey, this._sessionCookie);
         this.import = new ImportApi(this._client, this._log.bind(this), this._apiKey, this._sessionCookie);
         this.operations = new OperationsApi(this._client, this._log.bind(this));
+
+        this._log("Initialization complete");
+        this._initialized = true;
+
     }
 
     /**
@@ -196,11 +193,13 @@ class ProvisioningApi extends EventEmitter {
         if (this._initialized) {
             this._log('Disconnecting CometD');
             this._cometd.disconnect();
+
             this._log('Logging Out');
             await this._sessionApi.logout();
+
+            this._initialized = false;
         }
     }
-
 }
 
 module.exports = Object.assign({
