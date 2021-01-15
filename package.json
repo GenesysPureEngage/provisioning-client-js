@@ -1,44 +1,44 @@
 {
-  "name": "genesys-provisioning-client-js",
-  "version": "9.0.81",
-  "description": "Provisioning API used to create objects in configuration server in a way that is consistent with the BEC model",
-  "license": "MIT",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive"
-  },
-  "keywords": [
-    "http",
-    "js",
-    "genesys",
-    "provisioning",
-    "users",
-    "objects",
-    "configuration-server"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/GenesysPureEngage/provisioning-client-js.git"
-  },
-  "dependencies": {
-    "cometd": "5.0.1",
-    "cookiejar": "^2.1.2",
-    "events": "^1.1.1",
-    "http-proxy-agent": "^2.1.0",
-    "https-proxy-agent": "^2.2.4",
-    "promise": "^8.1.0",
-    "request": "^2.88.2",
-    "superagent": "^5.3.1",
-    "superagent-proxy": "^2.0.0",
-    "url": "^0.11.0",
-    "uuid": "^3.4.0"
-  },
-  "devDependencies": {
-    "expect.js": "~0.3.1",
-    "mocha": "^6.2.3",
-    "sinon": "1.17.3"
-  },
-  "engines": {
-    "node": ">= 8.0"
-  }
+    "name": "genesys-provisioning-client-js",
+    "version": "9.0.81",
+    "description": "Provisioning API used to create objects in configuration server in a way that is consistent with the BEC model",
+    "license": "MIT",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "./node_modules/mocha/bin/mocha --recursive"
+    },
+    "keywords": [
+        "http",
+        "js",
+        "genesys",
+        "provisioning",
+        "users",
+        "objects",
+        "configuration-server"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/GenesysPureEngage/provisioning-client-js.git"
+    },
+    "dependencies": {
+        "cometd": "5.0.1",
+        "cookiejar": "^2.1.2",
+        "events": "^1.1.1",
+        "http-proxy-agent": "^2.1.0",
+        "https-proxy-agent": "^2.2.4",
+        "promise": "^8.1.0",
+        "request": "^2.88.2",
+        "superagent": "^5.3.1",
+        "superagent-proxy": "^2.0.0",
+        "url": "^0.11.0",
+        "uuid": "^3.4.0"
+    },
+    "devDependencies": {
+        "expect.js": "~0.3.1",
+        "mocha": "^6.2.3",
+        "sinon": "1.17.3"
+    },
+    "engines": {
+        "node": ">= 8.0"
+    }
 }
